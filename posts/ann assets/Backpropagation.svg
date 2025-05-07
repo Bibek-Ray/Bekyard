@@ -1,0 +1,163 @@
+<svg width="600" height="350" xmlns="http://www.w3.org/2000/svg">
+  <!-- Definitions for reuse -->
+  <defs>
+    <!-- Gradient for neurons -->
+    <radialGradient id="hiddenGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="80%" stop-color="#d0e6ff" />
+      <stop offset="100%" stop-color="#a8d1ff" />
+    </radialGradient>
+    
+    <radialGradient id="outputGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="80%" stop-color="#fff7cc" />
+      <stop offset="100%" stop-color="#ffe680" />
+    </radialGradient>
+    
+    <radialGradient id="lossGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="80%" stop-color="#ffe6e6" />
+      <stop offset="100%" stop-color="#ffb3b3" />
+    </radialGradient>
+    
+    <!-- Pulse animation for neurons -->
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    
+    <!-- Neural pulse animation -->
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <polygon points="0 0, 10 5, 0 10" fill="currentColor"/>
+    </marker>
+    
+    <!-- Feedback marker -->
+    <marker id="feedbackArrow" markerWidth="10" markerHeight="10" refX="2" refY="5" orient="auto">
+      <polygon points="10 0, 0 5, 10 10" fill="#ff3333"/>
+    </marker>
+    
+    <!-- Animation definitions -->
+    <path id="pathH1toOutput" d="M175,80 Q260,90 320,140" stroke="none" fill="none"/>
+    <path id="pathH2toOutput" d="M175,140 L320,140" stroke="none" fill="none"/>
+    <path id="pathH3toOutput" d="M175,200 Q260,190 320,140" stroke="none" fill="none"/>
+    <path id="pathOutputToLoss" d="M380,140 L480,140" stroke="none" fill="none"/>
+    
+    <!-- Feedback paths -->
+    <path id="pathLossToOutput" d="M480,150 Q430,160 380,150" stroke="none" fill="none"/>
+    <path id="pathOutputToH1" d="M330,120 Q260,70 175,75" stroke="none" fill="none"/>
+    <path id="pathOutputToH2" d="M320,130 Q240,135 175,135" stroke="none" fill="none"/>
+    <path id="pathOutputToH3" d="M330,160 Q260,195 175,195" stroke="none" fill="none"/>
+  </defs>
+  
+  <!-- Clean white background -->
+  <rect width="600" height="350" fill-opacity="0" />
+
+  <!-- Forward pass connection lines -->
+  <path d="M175,80 Q260,90 320,140" stroke="#aaccff" stroke-width="2" fill="none"/>
+  <path d="M175,140 L320,140" stroke="#aaccff" stroke-width="2" fill="none"/>
+  <path d="M175,200 Q260,190 320,140" stroke="#aaccff" stroke-width="2" fill="none"/>
+  <path d="M380,140 L480,140" stroke="#ffcc88" stroke-width="2" fill="none"/>
+  
+  <!-- Backpropagation connection lines -->
+  <path d="M480,150 Q430,160 380,150" stroke="#ff7777" stroke-width="2.5" stroke-dasharray="4,4" fill="none" marker-end="url(#feedbackArrow)"/>
+  <path d="M330,120 Q260,70 175,75" stroke="#ff7777" stroke-width="2" stroke-dasharray="4,4" fill="none" marker-end="url(#feedbackArrow)"/>
+  <path d="M320,130 Q240,135 175,135" stroke="#ff7777" stroke-width="2" stroke-dasharray="4,4" fill="none" marker-end="url(#feedbackArrow)"/>
+  <path d="M330,160 Q260,195 175,195" stroke="#ff7777" stroke-width="2" stroke-dasharray="4,4" fill="none" marker-end="url(#feedbackArrow)"/>
+  
+  <!-- Forward pass data flow animations -->
+  <circle r="4" fill="#0099ff">
+    <animateMotion dur="2s" repeatCount="indefinite" path="M175,80 Q260,90 320,140"/>
+  </circle>
+  <circle r="4" fill="#00bbff">
+    <animateMotion dur="1.8s" repeatCount="indefinite" path="M175,140 L320,140"/>
+  </circle>
+  <circle r="4" fill="#0099ff">
+    <animateMotion dur="2.2s" repeatCount="indefinite" path="M175,200 Q260,190 320,140"/>
+  </circle>
+  <circle r="4" fill="#ffaa00">
+    <animateMotion dur="1.5s" repeatCount="indefinite" path="M380,140 L480,140"/>
+  </circle>
+  
+  <!-- Backpropagation data flow animations -->
+  <circle r="4" fill="#ff5555">
+    <animateMotion dur="2.5s" repeatCount="indefinite" path="M480,150 Q430,160 380,150"/>
+  </circle>
+  <circle r="4" fill="#ff5555">
+    <animateMotion dur="3s" repeatCount="indefinite" path="M330,120 Q260,70 175,75"/>
+  </circle>
+  <circle r="4" fill="#ff5555">
+    <animateMotion dur="2.8s" repeatCount="indefinite" path="M320,130 Q240,135 175,135"/>
+  </circle>
+  <circle r="4" fill="#ff5555">
+    <animateMotion dur="3.2s" repeatCount="indefinite" path="M330,160 Q260,195 175,195"/>
+  </circle>
+  
+  <!-- Hidden Layer Neurons with animations -->
+  <g class="neuron hidden">
+    <circle cx="150" cy="80" r="25" fill="url(#hiddenGradient)" stroke="#0074d9" stroke-width="2.5" filter="url(#glow)">
+      <animate attributeName="r" values="25;27;25" dur="3s" repeatCount="indefinite" />
+    </circle>
+    <text x="150" y="85" text-anchor="middle" font-size="16" fill="#0055aa" font-weight="bold">H1</text>
+  </g>
+  
+  <g class="neuron hidden">
+    <circle cx="150" cy="140" r="25" fill="url(#hiddenGradient)" stroke="#0074d9" stroke-width="2.5" filter="url(#glow)">
+      <animate attributeName="r" values="25;27;25" dur="3.5s" repeatCount="indefinite" />
+    </circle>
+    <text x="150" y="145" text-anchor="middle" font-size="16" fill="#0055aa" font-weight="bold">H2</text>
+  </g>
+  
+  <g class="neuron hidden">
+    <circle cx="150" cy="200" r="25" fill="url(#hiddenGradient)" stroke="#0074d9" stroke-width="2.5" filter="url(#glow)">
+      <animate attributeName="r" values="25;27;25" dur="2.8s" repeatCount="indefinite" />
+    </circle>
+    <text x="150" y="205" text-anchor="middle" font-size="16" fill="#0055aa" font-weight="bold">H3</text>
+  </g>
+  
+  <!-- Output Layer Neuron with animation -->
+  <g class="neuron output">
+    <circle cx="350" cy="140" r="30" fill="url(#outputGradient)" stroke="#ff9900" stroke-width="2.5" filter="url(#glow)">
+      <animate attributeName="r" values="30;33;30" dur="2.5s" repeatCount="indefinite" />
+    </circle>
+    <text x="350" y="145" text-anchor="middle" font-size="18" fill="#cc7700" font-weight="bold">Output</text>
+  </g>
+  
+  <!-- Loss Function Box with animation -->
+  <g class="loss">
+    <rect x="480" y="120" width="80" height="40" rx="10" fill="url(#lossGradient)" stroke="#ff3333" stroke-width="2.5" filter="url(#glow)">
+      <animate attributeName="opacity" values="1;0.8;1" dur="2s" repeatCount="indefinite" />
+    </rect>
+    <text x="520" y="145" text-anchor="middle" font-size="16" fill="#cc0000" font-weight="bold">Loss</text>
+  </g>
+  
+  <!-- Layer Labels with subtle animation -->
+  <text x="120" y="30" text-anchor="middle" font-size="16" fill="#0074d9" font-weight="bold">
+    Hidden Layer
+    <animate attributeName="opacity" values="0.9;1;0.9" dur="4s" repeatCount="indefinite" />
+  </text>
+  
+  <text x="350" y="30" text-anchor="middle" font-size="16" fill="#ff9900" font-weight="bold">
+    Output Layer
+    <animate attributeName="opacity" values="0.9;1;0.9" dur="4s" repeatCount="indefinite" />
+  </text>
+  
+  <text x="520" y="90" text-anchor="middle" font-size="16" fill="#ff3333" font-weight="bold">
+    Loss Function
+    <animate attributeName="opacity" values="0.9;1;0.9" dur="4s" repeatCount="indefinite" />
+  </text>
+  
+  <!-- Explanatory text -->
+  <text x="300" y="270" text-anchor="middle" font-size="18" fill="#fff" font-weight="bold">
+    Neural Network Learning Process
+  </text>
+  
+  <!-- Legend -->
+  <g transform="translate(160, 300)">
+    <line x1="0" y1="0" x2="30" y2="0" stroke="#aaccff" stroke-width="2" />
+    <text x="35" y="5" font-size="14" fill="#fff">Forward Pass</text>
+    
+    <line x1="200" y1="0" x2="230" y2="0" stroke="#ff7777" stroke-width="2" stroke-dasharray="4,4" />
+    <polygon points="230 -4, 240 0, 230 4" fill="#ff3333"/>
+    <text x="245" y="5" font-size="14" fill="#fff">Backpropagation</text>
+  </g>
+</svg>

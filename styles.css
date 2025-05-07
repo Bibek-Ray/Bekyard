@@ -1,0 +1,127 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #fafafa;
+    --card-bg: #fff;
+    --primary: #0066cc;
+    --text-main: #333;
+    --text-muted: #a9a9a9;
+    --radius: 14px;
+    --shadow: 0 6px 20px rgba(0, 0, 0, .08);
+}
+
+body {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    background: url("/posts/ann assets/bg.png");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: var(--card-bg);
+    line-height: 1.55;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+header {
+    text-align: center;
+    padding: 3rem 1rem 2rem;
+}
+
+header h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--card-bg);
+    margin-bottom: .25rem;
+}
+
+header p {
+    color: var(--text-muted);
+    font-size: 1rem;
+}
+
+main {
+    width: min(1200px, 92%);
+    margin-inline: auto;
+    display: grid;
+    gap: 3rem;
+}
+
+section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+    position: relative;
+}
+
+section h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 50px;
+    height: 3px;
+    background: var(--primary);
+    border-radius: 1px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.card {
+    background: var(--text-muted);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .12);
+}
+
+.card img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 1rem 1.15rem 1.25rem;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-content h3 {
+    font-size: 1.15rem;
+    margin-bottom: .5rem;
+    line-height: 1.4;
+    color: var(--primary);
+}
+
+.card-content p {
+    color: var(--card-bg);
+    font-size: .95rem;
+}
+
+footer {
+    text-align: center;
+    padding: 3rem 1rem 2rem;
+    font-size: .85rem;
+    color: var(--text-muted);
+}

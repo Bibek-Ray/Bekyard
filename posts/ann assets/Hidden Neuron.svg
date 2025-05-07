@@ -1,0 +1,125 @@
+<svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .neuron {
+      fill: white;
+      stroke: #1e90ff;
+      stroke-width: 2;
+      filter: drop-shadow(2px 2px 4px rgba(30, 144, 255, 0.4));
+      animation: pulse 4s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { stroke-width: 2; fill: white; }
+      50% { stroke-width: 5; fill: #e6f7ff; }
+    }
+
+    .label {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+      text-anchor: middle;
+      fill: #1e1e1e;
+    }
+
+    .title {
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      font-weight: bold;
+      text-anchor: middle;
+      fill: #333;
+    }
+
+    .equation {
+      font-family: 'Times New Roman', serif;
+      font-size: 16px;
+      font-style: italic;
+      text-anchor: middle;
+      fill: #007acc;
+    }
+
+    .activation {
+      font-family: monospace;
+      font-size: 14px;
+      text-anchor: middle;
+      fill: #007acc;
+    }
+
+    .card {
+      fill: white;
+      stroke: #ddd;
+      stroke-width: 1;
+      filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.15));
+      rx: 12;
+      ry: 12;
+    }
+
+    /* Animation controls */
+    @keyframes fadeInOut {
+      0%, 33%, 100% { opacity: 0; }
+      5%, 28% { opacity: 1; }
+    }
+
+    @keyframes fadeInOut2 {
+      0%, 33%, 66%, 100% { opacity: 0; }
+      38%, 61% { opacity: 1; }
+    }
+
+    @keyframes fadeInOut3 {
+      0%, 66%, 100% { opacity: 0; }
+      71%, 95% { opacity: 1; }
+    }
+
+    .phase1 {
+      animation: fadeInOut 12s infinite;
+    }
+
+    .phase2 {
+      animation: fadeInOut2 12s infinite;
+    }
+
+    .phase3 {
+      animation: fadeInOut3 12s infinite;
+    }
+  </style>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="300" height="200" fill="#fafafa" rx="12" ry="12"/>
+
+  <!-- Title -->
+  <text x="150" y="30" class="title">Hidden Neuron Visualization</text>
+
+  <!-- Phase 1: Neuron -->
+  <g class="phase1">
+    <circle class="neuron" cx="150" cy="100" r="35"/>
+    <text x="150" y="100" class="label" dy="5">H₁</text>
+    <text x="150" y="160" class="activation">Hidden Neuron</text>
+  </g>
+
+  <!-- Phase 2: Equation -->
+  <g class="phase2">
+    <rect x="70" y="80" width="160" height="40" class="card"/>
+    <text x="150" y="107" class="equation">∑(wᵢxᵢ) + b</text>
+    <text x="150" y="160" class="activation">Weighted Sum</text>
+  </g>
+
+  <!-- Phase 3: ReLU -->
+  <g class="phase3">
+  <!-- Card Background -->
+  <rect x="70" y="70" width="160" height="60" class="card"/>
+
+  <!-- Centered ReLU Graph -->
+  <!-- Flat left: 90 → 130, Rising: 130 → 190 -->
+  <polyline points="90,115 130,115 190,70"
+            fill="none" stroke="#1e90ff" stroke-width="2.5"/>
+
+  <!-- Axis -->
+  <line x1="130" y1="60" x2="130" y2="130" stroke="#aaa" stroke-width="1"/>
+  <line x1="90" y1="115" x2="210" y2="115" stroke="#aaa" stroke-width="1"/>
+
+  <!-- Axis label -->
+  <text x="122" y="130" font-family="Arial" font-size="10" fill="#666">0</text>
+
+  <!-- Function Label -->
+  <text x="150" y="160" class="activation">ReLU(z) = max(0, z)</text>
+</g>
+
+</svg>
