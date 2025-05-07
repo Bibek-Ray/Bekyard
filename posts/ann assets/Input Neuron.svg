@@ -1,0 +1,36 @@
+<svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .neuron {
+      fill: cyan;
+      stroke: black;
+      stroke-width: 2;
+      filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3));
+    }
+
+    .label {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: bold;
+      text-anchor: middle;
+      fill: #333;
+    }
+
+    .title {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+      text-anchor: middle;
+      fill: #555;
+    }
+  </style>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="200" height="150" fill="#ffffff" rx="12" ry="12"/>
+
+  <!-- Title -->
+  <text x="100" y="20" class="title">Input Layer Neuron</text>
+
+  <!-- Neuron -->
+  <circle class="neuron" cx="100" cy="80" r="32" />
+  <text x="100" y="80" class="label" dy="4">Vegan</text>
+</svg>

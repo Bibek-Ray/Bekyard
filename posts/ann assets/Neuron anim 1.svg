@@ -1,0 +1,120 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .neuron {
+      fill: white;
+      stroke: black;
+      stroke-width: 2;
+      filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3));
+    }
+
+    .active {
+      stroke: #00bfff;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { stroke-width: 2; fill: rgba(255,255,255,0.9); }
+      50% { stroke-width: 5; stroke: #1e90ff; fill: rgba(200,230,255,0.9); }
+      100% { stroke-width: 2; fill: rgba(255,255,255,0.9); }
+    }
+
+    .arrow {
+      stroke: black;
+      stroke-width: 1.5;
+      marker-end: url(#arrowhead);
+      opacity: 0.7;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0.2; }
+      50% { opacity: 0.9; }
+      100% { opacity: 0.2; }
+    }
+
+    .label {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: bold;
+      text-anchor: middle;
+      fill: #333;
+    }
+
+    .layer-label {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+      text-anchor: middle;
+      fill: #555;
+    }
+  </style>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="400" height="400" fill="#ffffff" rx="16" ry="16"/>
+  
+  <!-- Define arrowhead -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7"
+            refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#000" />
+    </marker>
+  </defs>
+
+  <!-- Layer labels -->
+  <text x="100" y="25" class="layer-label">Input Layer</text>
+  <text x="300" y="25" class="layer-label">Hidden Layer</text>
+
+  <!-- Input Neurons -->
+  <g id="input-layer">
+    <circle class="neuron" cx="100" cy="70" r="20"/>
+    <text x="100" y="70" class="label" dy="4">Hair</text>
+
+    <circle class="neuron" cx="100" cy="120" r="20"/>
+    <text x="100" y="120" class="label" dy="4">Speak</text>
+
+    <circle class="neuron" cx="100" cy="170" r="20"/>
+    <text x="100" y="170" class="label" dy="4">Conf</text>
+
+    <circle class="neuron" cx="100" cy="220" r="20"/>
+    <text x="100" y="220" class="label" dy="4">Vegan</text>
+
+    <circle class="neuron" cx="100" cy="270" r="20"/>
+    <text x="100" y="270" class="label" dy="4">Outfit</text>
+
+    <circle class="neuron" cx="100" cy="320" r="20"/>
+    <text x="100" y="320" class="label" dy="4">Burps</text>
+  </g>
+
+  <!-- Hidden Neurons -->
+  <g id="hidden-layer">
+    <circle class="neuron active" cx="300" cy="100" r="22"/>
+    <text x="300" y="100" class="label" dy="4">H1</text>
+    
+    <circle class="neuron active" cx="300" cy="195" r="22"/>
+    <text x="300" y="195" class="label" dy="4">H2</text>
+    
+    <circle class="neuron active" cx="300" cy="290" r="22"/>
+    <text x="300" y="290" class="label" dy="4">H3</text>
+  </g>
+
+  <!-- Arrows from inputs to hidden layer 2 -->
+  <g class="arrow-group-2">
+    <line class="arrow arrow-animated" x1="115" y1="70" x2="278" y2="195">
+      <animate attributeName="y2" values="100;200;300" keyTimes="0;0.25;0.5" dur="2.0s" repeatCount="indefinite" calcMode="discrete" />
+    </line>
+    <line class="arrow arrow-animated" x1="115" y1="120" x2="278" y2="195">
+      <animate attributeName="y2" values="100;200;300" keyTimes="0;0.25;0.5" dur="2.0s" repeatCount="indefinite" calcMode="discrete" />
+    </line>
+    <line class="arrow arrow-animated" x1="115" y1="170" x2="278" y2="195">
+      <animate attributeName="y2" values="100;200;300" keyTimes="0;0.25;0.5" dur="2.0s" repeatCount="indefinite" calcMode="discrete" />
+    </line>
+    <line class="arrow arrow-animated" x1="115" y1="220" x2="278" y2="195">
+      <animate attributeName="y2" values="100;200;300" keyTimes="0;0.25;0.5" dur="2.0s" repeatCount="indefinite" calcMode="discrete" />
+    </line>
+    <line class="arrow arrow-animated" x1="115" y1="270" x2="278" y2="195">
+      <animate attributeName="y2" values="100;200;300" keyTimes="0;0.25;0.5" dur="2.0s" repeatCount="indefinite" calcMode="discrete" />
+    </line>
+    <line class="arrow arrow-animated" x1="115" y1="320" x2="278" y2="195">
+      <animate attributeName="y2" values="100;200;300" keyTimes="0;0.25;0.5" dur="2.0s" repeatCount="indefinite" calcMode="discrete" />
+    </line>
+  </g>
+</svg>
