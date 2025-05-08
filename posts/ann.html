@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Artificial Neural Network (ANN)</title>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
 
@@ -22,6 +22,7 @@
       line-height: 1.8;
       font-size: 1.1rem;
       letter-spacing: 0.3px;
+      overflow-x: hidden;
     }
     /* COVER IMAGE */
 .cover-image {
@@ -192,6 +193,8 @@
     img {
       max-width: 100%;
       border-radius: 12px;
+      height: auto;
+      width: auto;
       margin: 30px 0;
       display: block;
       box-shadow: 0 8px 25px rgba(0,0,0,0.3);
@@ -214,24 +217,55 @@
     
     /* RESPONSIVE */
     @media (max-width: 768px) {
-      body {
-        padding: 30px 15px;
-        font-size: 0.95rem;
-      }
-      
-      h1 {
-        font-size: 2.2rem;
-      }
-      
-      h2 {
-        font-size: 1.6rem;
-      }
-      
-      table {
-        display: block;
-        overflow-x: auto;
-      }
-    }
+  body {
+    padding: 20px 15px;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    padding-left: 15px;
+    margin-bottom: 0.6em;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+    margin-top: 30px;
+  }
+
+  .cover-image {
+    margin: -15px -15px 25px;
+  }
+
+  table {
+    font-size: 0.85rem;
+  }
+
+  th, td {
+    padding: 12px 15px;
+  }
+
+  img {
+    margin: 20px 0;
+  }
+
+  iframe {
+    width: 100% !important;
+    height: 300px !important;
+  }
+
+  blockquote {
+    padding: 15px 20px;
+    margin: 20px 0;
+  }
+}
     
     /* MATH EQUATIONS */
     .MathJax {
@@ -278,12 +312,12 @@
   <p>A Neuron, in biological terms, is <em>the fundamental unit of the nervous system, specialized to transmit information to different parts of the body</em>. Basically, it's like a tiny messenger that carries information from one place to another. And we use this same concept to build an amazing architecture which is called ANN.</p>
   <p>In deep learning, a neuron, specifically those inside the hidden layers, is a computational unit that receives inputs, processes them, and produces an output through an <strong>activation function</strong>.</p>
 
-  <img src="ann assets/Input Neuron.svg" height="250px"><br/>
+  <img src="ann assets/Input Neuron.svg"><br/>
   <p class="meta">The Input Neuron</p>
 
   <p>The Hidden Layer Neuron shown below explains what computation it does inside. We'll talk about it in detail in a few minutes.</p>
 
-  <img src="ann assets/Hidden Neuron.svg" height="250px"><br/>
+  <img src="ann assets/Hidden Neuron.svg"><br/>
   <p class="meta">The Hidden Neuron</p>
 
   <p>I know that was a lot to take in—but don't worry, you're about to see it all click.</p>
@@ -342,14 +376,14 @@
   <hr>
   <h2>The Input Layer</h2>
   <p>Check out the visualization below, I've coded those SVGs myself :)</p>
-  <img src="./ann assets/Neuron anim 1.svg" height="350px"><br/>
+  <img src="./ann assets/Neuron anim 1.svg"><br/>
   <p>This diagram shows how the values will be sent to each hidden layer neuron.</p>
   <p>And here's how it actually works in a real neural network—each input connects to every neuron in the hidden layer (aka a fully connected layer):</p>
-  <img src="./ann assets/Neuron anim 2.svg" height="350px"><br/>
+  <img src="./ann assets/Neuron anim 2.svg"><br/>
   <p>I know this looks pretty complex, but honestly, it's just a repetitive task happening.</p>
   <p>Each arrow from an input neuron to a hidden layer neuron is like a mantra chanted several times, with a few small changes, that eventually builds up to a big change.</p>
   <p>Let's take a single input neuron to understand what's happening. Check out the diagram below:</p>
-  <img src="./ann assets/Weights.png" height="350px"><br/>
+  <img src="./ann assets/Weights.png"><br/>
   <p>The green-colored input neuron holds a value of <strong>6</strong>, which gets sent to each of the hidden layer neurons—$H1$, $H2$, and $H3$.</p>
   <p>$W1$, $W2$, and $W3$  are called <strong>weights</strong>. You can think of weights as the <em>importance</em> or <em>emphasis</em> assigned to an input.</p>
   <p>It's kind of like choosing what to order at your favorite restaurant—you don't treat all items equally, right? The one you crave the most gets top priority. Neural networks do the same with inputs.</p>
