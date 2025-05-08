@@ -1,15 +1,14 @@
 const data = {
-    Technical: [
+    AI Explained: [
       { title: "Artificial Neural Network (ANN)", desc: "How does a machine find patterns in chaos?", img: "img1.png", url: "posts/ann.html" },
       { title: "Convolutional Neural Networks (CNN)", desc: "They technically destroy the image to see it properly.", img: "img2.png", url: "posts/cnn.html" },
       { title: "Long Short‑Term Memory (LSTM)", desc: "How we teach computers to be nostalgic.", img: "img3.png", url: "posts/lstm.html" }
     ],
     Personal: [
-      { title: "Why I Ditched Sugar", desc: "A brutally honest take on my love–hate story with sweets.", img: "img4.png", url: "posts/ditched-sugar.html" },
-      { title: "Sketching After 2 Years", desc: "Picking up the charcoal again and what it taught me.", img: "img5.png", url: "posts/sketching.html" }
+      { title: "A Short Story on Generative Adversarial Networks (GANs)", desc: "See how two models try to fool each other.", img: "img4.png", url: "posts/gan.html" }
     ],
-    Miscellaneous: [
-      { title: "My Hot Take on LOTR", desc: "Why Frodo would never make it to my contact list.", img: "img6.png", url: "posts/lotr-hot-take.html" }
+    Marvel and other movies: [
+      { title: "Fantastic 4 - What I expect", desc: "Are the Fantastic 4 really coming to Earth-616?", img: "img6.png", url: "posts/fantastic4.html" }
     ]
   };
 
