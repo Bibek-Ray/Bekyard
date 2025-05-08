@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .about-container {
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+      flex-wrap: wrap;
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+
+    .about-container img {
+      width: 320px;
+      height: 380px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .about-text {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .about-text p {
+      margin-bottom: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <div class="logo">
+        <a href="index.html">Bekyard</a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Blog</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <div class="about-container">
+      <img src="Bibek.jpg" alt="Bibek Ray" />
+      <div class="about-text">
+        <h1>About Me</h1>
+    <p><strong>Hi, I’m Bibek Ray.</strong><br>
+    Data Scientist. Builder. Sketcher of both models and meaning.<br/>
+    I’m based in Bangalore, where I work at the intersection of machine learning, full-stack development, and thoughtful design. My projects range from predictive modeling and internal tooling to hackathon prototypes and late-night UI experiments.<br/>
+    I’m currently diving deeper into transformer architectures and attention mechanisms—not for the buzzwords, but to understand what’s actually going on under the hood.<br/>
+    This blog is where I think out loud. Some of it is technical, some personal, and some just doesn’t fit anywhere else.<br/>
+    <em>Views are my own. Especially the controversial ones.</em></p>
+  </main>
+
+  <footer>&copy; 2025 Bibek Ray</footer>
+</body>
+</html>
