@@ -10,56 +10,124 @@
     --bg: #fafafa;
     --card-bg: #fff;
     --primary: #0066cc;
+    --secondary: #4da6ff;
     --text-main: #333;
+    --text-light: #ffffff;
     --text-muted: #a9a9a9;
     --radius: 14px;
     --shadow: 0 6px 20px rgba(0, 0, 0, .08);
+    --transition: all 0.3s ease;
+    --font-primary: 'Inter', 'Helvetica Neue', Arial, sans-serif;
 }
 
 body {
-    font-family: "Segoe UI", system-ui, sans-serif;
+    font-family: var(--font-primary);
+    font-weight: 300;
     background: url("/posts/ann assets/bg.png");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    color: var(--card-bg);
+    color: var(--text-light);
     line-height: 1.55;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 a {
     text-decoration: none;
     color: inherit;
+    transition: var(--transition);
+}
+
+/* Navbar styles */
+nav {
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.8rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--text-light);
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1.8rem;
+}
+
+.nav-links li a {
+    font-size: 0.95rem;
+    font-weight: 400;
+    padding: 0.3rem 0;
+    position: relative;
+    letter-spacing: 0.02em;
+}
+
+.nav-links li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary);
+    transition: var(--transition);
+}
+
+.nav-links li a:hover::after,
+.nav-links li a.active::after {
+    width: 100%;
 }
 
 header {
     text-align: center;
-    padding: 3rem 1rem 2rem;
-}
-
-header h1 {
-    font-size: clamp(2rem, 4vw, 3rem);
-    color: var(--card-bg);
-    margin-bottom: .25rem;
+    padding: 1.5rem 1rem 3rem;
 }
 
 header p {
-    color: var(--text-muted);
-    font-size: 1rem;
+    color: var(--secondary);
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 0.01em;
 }
 
 main {
     width: min(1200px, 92%);
     margin-inline: auto;
     display: grid;
-    gap: 3rem;
+    gap: 4rem;
+    padding: 3rem;
+    flex: 1;
 }
 
 section h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: var(--primary);
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    color: var(--text-light);
     position: relative;
+    display: inline-block;
+    letter-spacing: -0.02em;
 }
 
 section h2::after {
@@ -67,7 +135,7 @@ section h2::after {
     position: absolute;
     left: 0;
     bottom: -6px;
-    width: 50px;
+    width: 60px;
     height: 3px;
     background: var(--primary);
     border-radius: 1px;
@@ -75,23 +143,25 @@ section h2::after {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
 }
 
 .card {
-    background: var(--text-muted);
+    background: rgba(40, 40, 40, 0.7);
     border-radius: var(--radius);
     overflow: hidden;
     box-shadow: var(--shadow);
     display: flex;
     flex-direction: column;
-    transition: transform .2s ease, box-shadow .2s ease;
+    transition: transform .3s ease, box-shadow .3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, .12);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .card img {
@@ -101,27 +171,52 @@ section h2::after {
 }
 
 .card-content {
-    padding: 1rem 1.15rem 1.25rem;
+    padding: 1.5rem;
     flex: 1 1 auto;
     display: flex;
     flex-direction: column;
 }
 
 .card-content h3 {
-    font-size: 1.15rem;
-    margin-bottom: .5rem;
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
     line-height: 1.4;
-    color: var(--primary);
+    color: var(--text-light);
+    letter-spacing: -0.01em;
 }
 
 .card-content p {
-    color: var(--card-bg);
-    font-size: .95rem;
+    color: var(--text-muted);
+    font-size: 1rem;
+    font-weight: 300;
 }
 
 footer {
     text-align: center;
-    padding: 3rem 1rem 2rem;
-    font-size: .85rem;
+    padding: 2rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 300;
     color: var(--text-muted);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Font import */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .nav-links {
+        gap: 1.2rem;
+    }
 }
