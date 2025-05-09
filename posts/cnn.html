@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Convolution Neural Network (CNN)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a href="../index.html" class="back-home">← Back to Home</a>
+  <section>
+    <div class="cover-image">
+      <img src="./cnn assets/img2.png" class="cover-art" alt="Neural Network Cover Art">
+    </div>
+    <h1>Convolution Neural Network (CNN)</h1>
+    <p class="meta">Author: Bibek Ray &nbsp;&nbsp;|&nbsp;&nbsp; Date: 12th May 2025</p>
+    
+    <p>I hope you are here after reading my blog on ANNs. If you haven’t read it yet, I plead with you to read it once, it doesn’t matter where you read (<em>P.S. - Read mine</em>). I said that because CNNs are just another layer on top of ANNs.<br/>
+    CNNs are specifically designed to handle image-related data, since the ANN is not that great with pixels. Before getting into the technical jargon, let me give you an easy-to-understand top-down view of how a CNN works.<br/>
+    Let’s first imagine how we humans understand images. How do we <em>“recognize”</em> them? Their shape, color, or segmenting objects by edges. These help us identify what we’re looking at.<br/>
+    In the same way, CNNs work. They try to detect edges and sometimes even color them too. How does it detect? Well, that’s the juicy part.</p>
+    
+    <h2>Let’s get an input dataset first…</h2>
+    <p>We need some data first. And guess what our sample data will be? An image of a cat! It would be <em>purrfect</em> for our intuition.</p>
+    <p>Look at this innocent guy:</p>
+    <img src="cnn assets/Cat face.jpg" alt="Cat Image">
+    
+    <p>We both find it cute, but what about the computer?<br/>
+      It doesn’t understand images. However good-looking the photograph is, you give it high Resolution, 8K, it just won’t get it. It only understands <em>numbers</em>. So we need to think of some way to convert this cat into numbers.<br/>
+      By the way, on a side note, I recall one very famous line I once read in a YouTube comment section. It said,<br/>
+      <blockquote><em>“Anything that can be represented in numbers can be used to train an ML model”.</em></blockquote><br/>
+      Quite insightful.<br/><br/>
+      Back to what we were discussing, converting a cat into a number.<br/>
+      First, we need to understand what an image is. An image is, in very simple words, a 3-dimensional matrix— height, width, and the RGB color channel. Height and Width are variables, but color channel can’t go beyond 3, because no one has discovered any more primary colors other than Red, Green, and Blue…<em>yet</em>.<br/>
+      This image data can be converted to gray scale to remove the RGB dimension. That will also benefit in reducing the computational resources, but it comes with a cost of “Loss of Information”.<br/>
+      Once converted to grayscale, you can represent the pixels with their actual value. The pixel values **range** from 0 to 255: 0 is black, 255 is white. We can and do normalize it to a range of 0-1 for making the calculation simple.<br/>
+      Check the image below. Zoom in, and see how I converted it into a matrix. This is what a machine will be able to see or read.</p>
+    
+    <img src="cnn assets/grayscale_matrix_with_values.png" alt="Grayscale Matrix">
+    <p class="meta">This is just a 32x32 matrix for illustration. Don’t judge my cat.</p>
+
+    <p>This one is a 32x32 matrix and thus, looks horrible. It’s just for illustration purposes, actual images are way more detailed to pass as much information as possible.<br/>
+      Let’s normalize the image first. Check the updated matrix,</p>
+    
+    <img src="cnn assets/normalized_pixel_matrix.png" alt="Normalized Matrix">
+    <p class="meta">See? Smaller and simpler numbers to work with.</p>
+    <p>Notice that the pixel values are much smaller and easier to work with now. This reduces the chances of getting into heavy numbers during Matrix calculations, which will be pretty cumbersome for the machine to work with.<br/>
+      Right after this we can do an optional step, called Padding.<br/>
+      Before we move on to the next part, I’ll be explaining you what a <strong>Kernel</strong> is. It’s important to understand it first.</p>
+    
+    <h2>The Kernel (aka Filter)</h2>
+    <p>The Kernel is a small matrix that goes through the entire image matrix and highlights the important pixel in it. Think of it as picking up a coin from a box of scrap.<br/>
+      I’ve provided an illustration below to show how it goes over the image matrix.</p>
+    <img src="cnn assets/Kernel Slide.svg" alt="Kernel over image">
+    
+    <p>Now, what the kernel does is select the important pixel. But how? By using simple maths.</p>
+    <img src="cnn assets/Max-Pool.svg" alt="Kernel Sliding">
+  
+    
+    
+    <h2>Read more...</h2>
+    <p>If you're still here, then congratulations—you are now 32x32% cooler.<br/>
+      Check out my blog on <a href="https://bekyard.vercel.app/posts/ann.html" target="_blank">ANN</a> if you missed it.<br/>
+      Follow me on <a href="https://www.linkedin.com/in/bibek-ray-061727220/" target="_blank">LinkedIn</a>.<br/>
+      And if you liked the humor here, do drop a feedback. Or a cat emoji. That works too.
+    </p>
+    
+    <script>
+      MathJax = {
+        tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+        svg: { fontCache: 'global' }
+      };
+      </script>
+</section>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</body>
+</html>
