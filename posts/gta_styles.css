@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600;700&display=swap');
+
+/* BACKGROUND VIBES */
+.content-wrapper {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  
+body {
+  margin: 0;
+  background-image: url("./gta assets/Jason_and_Lucia_01_ultrawide.jpg");
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 2rem;
+  font-family: 'Fira Sans', sans-serif;
+  color: #2a0f40;
+  min-height: 100vh;
+}
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 179, 125, 0),
+      rgba(86, 28, 80, 0.675)
+    );
+    z-index: 0;
+    pointer-events: none;
+  }
+  
+/* BACK LINK */
+.back-home {
+  display: inline-block;
+  color: #ffe66d;
+  font-weight: bold;
+  text-decoration: none;
+  margin-bottom: 2rem;
+  transition: 0.3s ease;
+}
+
+.back-home:hover {
+  color: #ffffff;
+  text-shadow: 0 0 5px #ffe66d;
+}
+
+/* SECTION CARD */
+section {
+  max-width: 900px;
+  margin: auto;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 20px;
+  backdrop-filter: blur(1px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  animation: fadeInUp 1.2s ease-out both;
+}
+
+/* HEADINGS */
+h1, h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  letter-spacing: 2px;
+  color: #ffe66d;
+  text-shadow: 0 0 10px #ffe66d;
+  margin-bottom: 1rem;
+}
+
+h2 {
+  font-size: 2.2rem;
+}
+
+/* TEXT */
+p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #fffbe7;
+}
+
+/* COVER IMAGE */
+.cover-art {
+  max-width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  margin-bottom: 2rem;
+}
+
+/* SPECIAL TEXT CLASSES */
+.neon-pink {
+  color: #2ff1ff;
+  font-weight: bold;
+}
+
+.sky-blue {
+  color: #9dd3f7;
+  font-weight: bold;
+}
+/* FADE-IN ANIMATION */
+@keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+/* ─────────────────────────────── */
+/* MOBILE RESPONSIVENESS MAGIC 🪄 */
+/* ─────────────────────────────── */
+@media (max-width: 768px) {
+    body {
+      padding: 1rem;
+    }
+  
+    .back-home {
+      font-size: 0.95rem;
+      margin-bottom: 1.2rem;
+    }
+  
+    section {
+      padding: 1.5rem;
+      border-radius: 16px;
+    }
+  
+    h1, h2 {
+      font-size: 2rem;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+  
+    p {
+      font-size: 1rem;
+      text-align: justify;
+    }
+  
+    .cover-art {
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+    }
+  }
+  
