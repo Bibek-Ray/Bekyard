@@ -1,0 +1,134 @@
+@font-face {
+    font-family: 'CondorBoldItalic';
+    src: url('./f4 assets/fonts/Condor-BoldCondensedItalic.otf') format('opentype');
+    font-weight: bold;
+    font-style: italic;
+  }
+  
+/* GLOBAL STYLES */
+body {
+  margin: 0;
+  font-family: 'Fira Sans', sans-serif;
+  background-color: #fdf0d1;
+  color: #1a1a1a;
+  line-height: 1.7;
+  font-size: 1.1rem;
+  padding: 2rem;
+}
+
+/* BACK TO HOME LINK */
+.back-home {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  color: #158fd4;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.back-home:hover {
+  color: #0c6da4;
+  transform: scale(1.05);
+  text-decoration: underline;
+}
+
+/* SECTION WRAPPER */
+section {
+  max-width: 900px;
+  margin: auto;
+  padding: 2rem;
+  border: 4px solid #158fd4;
+  border-radius: 16px;
+  background-color: #fdf0d1;
+  box-shadow: 0 8px 20px rgba(21, 143, 212, 0.15);
+}
+
+/* HEADINGS */
+h1, h2, h3 {
+  font-family: 'CondorBoldItalic', sans-serif;
+  color: #158fd4;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  text-shadow: 1px 1px #00000020;
+}
+
+h1 {
+  font-size: 3rem;
+  letter-spacing: 1px;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+/* PARAGRAPHS */
+p {
+  margin-bottom: 1rem;
+}
+
+/* IMAGES */
+img {
+  max-width: 100%;
+  border-radius: 10px;
+  margin: 1.5rem 0;
+}
+
+/* LINKS */
+a {
+  color: #158fd4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* BLOCKQUOTES - Comic Speech Bubble */
+blockquote {
+  background: #158fd4;
+  color: #ffffff;
+  padding: 1rem 1.5rem;
+  margin: 2rem 0;
+  border-left: 8px solid #0c6da4;
+  border-radius: 12px;
+  font-style: italic;
+  position: relative;
+}
+
+blockquote::before {
+  content: "“";
+  font-size: 3rem;
+  position: absolute;
+  left: 10px;
+  top: -10px;
+  color: #ffffff80;
+}
+
+blockquote::after {
+  content: "”";
+  font-size: 3rem;
+  position: absolute;
+  right: 10px;
+  bottom: -10px;
+  color: #ffffff80;
+}
+
+/* COMIC CARDS */
+.comic-card {
+  background: #fff;
+  border: 2px dashed #158fd4;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(21, 143, 212, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.comic-card:hover {
+  transform: translateY(-5px) scale(1.01);
+}
