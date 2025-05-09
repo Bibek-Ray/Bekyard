@@ -34,7 +34,7 @@
       Back to what we were discussing, converting a cat into a number.<br/>
       First, we need to understand what an image is. An image is, in very simple words, a 3-dimensional matrix— height, width, and the RGB color channel. Height and Width are variables, but color channel can’t go beyond 3, because no one has discovered any more primary colors other than Red, Green, and Blue…<em>yet</em>.<br/>
       This image data can be converted to gray scale to remove the RGB dimension. That will also benefit in reducing the computational resources, but it comes with a cost of “Loss of Information”.<br/>
-      Once converted to grayscale, you can represent the pixels with their actual value. The pixel values **range** from 0 to 255: 0 is black, 255 is white. We can and do normalize it to a range of 0-1 for making the calculation simple.<br/>
+      Once converted to grayscale, you can represent the pixels with their actual value. The pixel values <strong>range</strong> from 0 to 255: 0 is black, 255 is white. We can and do normalize it to a range of 0-1 for making the calculation simple.<br/>
       Check the image below. Zoom in, and see how I converted it into a matrix. This is what a machine will be able to see or read.</p>
     
     <img src="cnn assets/grayscale_matrix_with_values.png" alt="Grayscale Matrix">
@@ -46,18 +46,39 @@
     <img src="cnn assets/normalized_pixel_matrix.png" alt="Normalized Matrix">
     <p class="meta">See? Smaller and simpler numbers to work with.</p>
     <p>Notice that the pixel values are much smaller and easier to work with now. This reduces the chances of getting into heavy numbers during Matrix calculations, which will be pretty cumbersome for the machine to work with.<br/>
-      Right after this we can do an optional step, called Padding.<br/>
-      Before we move on to the next part, I’ll be explaining you what a <strong>Kernel</strong> is. It’s important to understand it first.</p>
+      Right after this we can do an optional step, called <strong>Padding</strong>.<br/>
+      Padding helps preserve edge information. Think of it like this: a pixel in the middle of the image usually has <strong>8 neighboring pixels</strong> for comparison. But the pixel at the top-left corner (like position (0, 0)) only has <strong>3 neighbors</strong>. That imbalance affects how well the kernel detects textures and edges near the image borders.<br/>
+      This becomes important <strong>if the image has relevant features near the edges</strong>. But in many cases (like our adorable cat image), the subject is usually <strong>centered</strong>, and the edges contain background or less useful data.<br/>
+      That’s why padding is optional, but it’s still good to know it exists — especially when you want to preserve image size or detect border features better.<br/></p>
+      <img src="./cnn assets/Padding Illustration.png" alt="Padding Illustration">
+      <p class="meta">This is how padding is added</p>
+      <p>Before we move on to the next part, I’ll be explaining you what a <strong>Kernel</strong> is. It’s important to understand it first.</p>
     
     <h2>The Kernel (aka Filter)</h2>
     <p>The Kernel is a small matrix that goes through the entire image matrix and highlights the important pixel in it. Think of it as picking up a coin from a box of scrap.<br/>
       I’ve provided an illustration below to show how it goes over the image matrix.</p>
     <img src="cnn assets/Kernel Slide.svg" alt="Kernel over image">
+    <p class="meta">Kernel Matrix sliding over the Image Matrix</p>
     
-    <p>Now, what the kernel does is select the important pixel. But how? By using simple maths.</p>
+    <p>Now, how does the kernel detect features? By using simple math.<br/>
+      We take the chunk of the image matrix over which the kernel box is hovering and multiply it's values with the kernel matrix's and add the values of the resultant matrix. This is done for the entire image and the resultant individual values are stored in a new matrix called <strong>Feature Map</strong>.<br/>
+      So, let's say we have a 6 x 6 image matrix and a kernel of size 3 x 3 with stride = 1, then our feature map will be of size 4 x 4.<br/>
+      The following formula helps in getting the Feature Map size,</p>
+    <blockquote>$\text{Output Size} = \frac{(N - F)}{S} + 1$</blockquote>
+    <p>Where,<br/>
+      <ul>
+        <li>N = Input size (height/width)</li>
+        <li>F = Filter (kernel) size</li>
+        <li>S = Stride</li>
+      </ul>
+      <small class="meta">(Assuming no padding is used)</small>
+    </p>
+    <p>Once we get the feature map, we further shrink it to make training more easier and quick. This shrinking process is called <strong>Pooling</strong>.<br/>
+      We can either take the average of all the pixel values, to preserve the information for all the pixel into one single value or we can select the max value out of all the matrix values. The former one is called <strong>mean-pooling</strong> while the latter is the famous one, called <strong>max-pooling</strong>.</p>
     <img src="cnn assets/Max-Pool.svg" alt="Kernel Sliding">
-  
+    <p class="meta">Max-pooling in action</p>  
     
+    <h2>I am still writing this...</h2>
     
     <h2>Read more...</h2>
     <p>If you're still here, then congratulations—you are now 32x32% cooler.<br/>
