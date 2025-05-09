@@ -8,7 +8,7 @@ const data = {
       { title: "A Short Story on Generative Adversarial Networks (GANs)", desc: "See how two models try to fool each other.", img: "img4.png", url: "posts/gan.html" }
     ],
     "Marvel & Movies": [
-      { title: "Fantastic 4 - What I expect", desc: "Are the Fantastic 4 really coming to Earth-616?", img: "img6.png", url: "posts/fantastic4.html" }
+      { title: "Fantastic 4 - What I expect", desc: "Are the Fantastic 4 really coming to Earth-616?", img: "fantastic4.png", url: "posts/fantastic4.html" }
     ]
   };
 
