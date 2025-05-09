@@ -32,6 +32,24 @@
     .about-text p {
       margin-bottom: 1.2rem;
     }
+
+    @media (max-width: 768px) {
+      .about-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .about-container img {
+        width: 90%;
+        height: auto;
+      }
+
+      .about-text {
+        min-width: unset;
+        padding: 0 1rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -53,14 +71,16 @@
       <img src="Bibek.jpg" alt="Bibek Ray" />
       <div class="about-text">
         <h1>About Me</h1>
-    <p><strong>Hi, I’m Bibek Ray.</strong><br>
-    Data Scientist. Builder. Sketcher of both models and meaning.<br/>
-    I’m based in Bangalore, where I work at the intersection of machine learning, full-stack development, and thoughtful design. My projects range from predictive modeling and internal tooling to hackathon prototypes and late-night UI experiments.<br/>
-    I’m currently diving deeper into transformer architectures and attention mechanisms—not for the buzzwords, but to understand what’s actually going on under the hood.<br/>
-    This blog is where I think out loud. Some of it is technical, some personal, and some just doesn’t fit anywhere else.<br/>
-    <em>Views are my own. Especially the controversial ones.</em></p>
+        <p><strong>Hi, I’m Bibek Ray.</strong><br>
+          Data Scientist. Marvel Fanatic. Gamer. Sketcher.<br/>
+          I’m based in Bangalore, working as a Data Scientist at Tredence Inc. My core expertise lies at the intersection of machine learning, artificial intelligence, and full-stack development. I've worked on LLM agents, built an inventory management system, and even dabbled in game development.<br/>
+          Right now, I’m diving deeper into transformer architectures and attention mechanisms—not for the buzzwords, but to genuinely understand what’s going on under the hood.<br/>
+          This blog is where I think out loud. Some posts are technical, some personal, and some just... don’t fit anywhere else.<br/>
+          <em>Views are my own. Especially the controversial ones.</em></p>
+      </div>
+    </div>
   </main>
 
-  <footer>&copy; 2025 Bibek Ray</footer>
+  <footer style="text-align:center; padding: 1rem;">&copy; 2025 Bibek Ray</footer>
 </body>
 </html>
