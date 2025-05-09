@@ -15,6 +15,9 @@
       background-repeat: no-repeat;
       background-size:auto;
       background-attachment: fixed;
+      overflow-x: hidden;
+    }
+    section{
       color: #e1eaf5;
       padding: 50px 25px;
       max-width: 950px;
@@ -22,7 +25,6 @@
       line-height: 1.8;
       font-size: 1.1rem;
       letter-spacing: 0.3px;
-      overflow-x: hidden;
     }
     /* COVER IMAGE */
 .cover-image {
@@ -201,7 +203,7 @@
   transition: transform 0.3s ease;
 }
 @media (min-width: 769px) {
-  img {
+  img:not(.cover-art) {
     width: 50%;
     max-width: 800px;
     margin-left: auto;
@@ -303,188 +305,191 @@
       background: linear-gradient(90deg, #5ecfff, transparent);
       opacity: 0.3;
     }
+
     </style>
 </head>
 <body>
-  <div class="cover-image">
-    <img src="./ann assets/img1.png" alt="Neural Network Cover Art">
-  </div>
-  <h1>Artificial Neural Network (ANN)</h1>
-  <p class="meta">Author: Bibek Ray &nbsp;&nbsp;|&nbsp;&nbsp; Date: 28th April 2025</p>
-
-  <p>Classical ML has been around for a long time and has been proven beneficial in many areas. However, it still lacks the accuracy needed for more complex datasets, which have many variables affecting a certain outcome.</p>
-
-  <p>For that, we have <strong>Artificial Neural Networks</strong>. Sounds cool, right? Wait until you understand how they work and the math behind them.</p>
-
-  <h2>Where does it all begin?</h2>
-  <p>Let's start from the very basics.</p>
-  <p><em>What's a <strong>Neuron</strong>?</em></p>
-  <p>A Neuron, in biological terms, is <em>the fundamental unit of the nervous system, specialized to transmit information to different parts of the body</em>. Basically, it's like a tiny messenger that carries information from one place to another. And we use this same concept to build an amazing architecture which is called ANN.</p>
-  <p>In deep learning, a neuron, specifically those inside the hidden layers, is a computational unit that receives inputs, processes them, and produces an output through an <strong>activation function</strong>.</p>
-
-  <img src="ann assets/Input Neuron.svg"><br/>
-  <p class="meta">The Input Neuron</p>
-
-  <p>The Hidden Layer Neuron shown below explains what computation it does inside. We'll talk about it in detail in a few minutes.</p>
-
-  <img src="ann assets/Hidden Neuron.svg"><br/>
-  <p class="meta">The Hidden Neuron</p>
-
-  <p>I know that was a lot to take in—but don't worry, you're about to see it all click.</p>
-
-  <h2>Creating and Preparing our Data first</h2>
-  <h3>Let's have some sample data first... but this one will be funny.</h3>
-
-  <p>Suppose we've got a totally legit, not-at-all-made-up dataset measuring someone's Smartness Score based on their overall <strong>Aura</strong>.</p>
-
-  <table>
-    <tr><th>Smartness Score</th><th>Name</th><th>Hairstyle Score</th><th>Speaking Score</th><th>Confidence Score</th><th>Vegan</th><th>Outfit Score</th><th>Burps?</th></tr>
-    <tr><td>89</td><td>Ayam</td><td>8</td><td>9</td><td>9</td><td>Yes</td><td>8</td><td>No</td></tr>
-    <tr><td>76</td><td>Renu</td><td>6</td><td>8</td><td>7</td><td>0</td><td>7</td><td>Yes</td></tr>
-    <tr><td>92</td><td>Simi</td><td>9</td><td>9</td><td>10</td><td>1</td><td>9</td><td>No</td></tr>
-    <tr><td>65</td><td>Vikram</td><td>5</td><td>6</td><td>6</td><td>0</td><td>6</td><td>Yes</td></tr>
-    <tr><td>81</td><td>Soham</td><td>7</td><td>7</td><td>8</td><td>1</td><td>8</td><td>No</td></tr>
-    <tr><td>59</td><td>Meera</td><td>4</td><td>5</td><td>5</td><td>0</td><td>5</td><td>Yes</td></tr>
-  </table>
-
-  <p>I guess it's the wildest dataset you've ever seen…</p>
-  <p>If you pay close attention to the table above, you can see how certain scores affect the smartness score. But, it's based on your very intuition, or better—your gut feeling. There's no proof, or mathematical evidence, yet, for you to say that, <em>"Hey, is burping reducing my smartness score—my Aura?"</em></p>
-  <p>So, now we need a proof.</p>
-  <p>Proof that burping and other features affect the smartness score. And Neural Network will help us figuring it out.</p>
-  <p>Before diving into the technical part, let's first clear some basic terminologies that are followed by a variety of research papers, Udemy courses, and books.</p>
-  <p>We have,</p>
-  <p>A Dependent Variable ⇒ y</p>
-  <p>An Independent Variable ⇒ x</p>
-  <p>In our case, we are dealing with multiple independent variables, namely:</p>
-  <table>
-    <tr><th>Variable</th><th>Symbol</th></tr>
-    <tr><td>Hairstyle Score</td><td>X₀</td></tr>
-    <tr><td>Speaking Score</td><td>X₁</td></tr>
-    <tr><td>Confidence Score</td><td>X₂</td></tr>
-    <tr><td>Vegan</td><td>X₃</td></tr>
-    <tr><td>Outfit Score</td><td>X₄</td></tr>
-    <tr><td>Burps</td><td>X₅</td></tr>
-  </table>
-
-  <p>Notice that we have only 6 variables mentioned above, although there were 7 features in the original dataset. This is because we've excluded the *Name* independent variable since it has no relevance in predicting the smartness score—after all, who judges someone's smartness by their name? Not me!</p>
-  <p>Therefore, we'll drop that column before feeding the dataset into the neural network model.</p>
-  <p>Additionally, a machine doesn't understand 'Yes' or 'No'. So we have to convert those values in the table, for the columns <strong>Vegan</strong> and <strong>Burps</strong>, to number notations, where:</p>
-  <p>'Yes' ⇒ 1 <br> 'No' ⇒ 0</p>
-  <p>The above step is an important step in Data Preprocessing, and is done almost every time whenever you have to prepare a dataset for training. This process is called Encoding.</p> 
-  <p>The specific Encoding we are doing here is called Label Encoding. I'll skip the deep dive into the types of encoding for now, but it's definitely worth reading up later.</p>
-  <p>Thus, our updated dataset will look like this:</p>
-  <table>
-    <tr><th>Smartness Score</th><th>Hairstyle Score</th><th>Speaking Score</th><th>Confidence Score</th><th>Vegan</th><th>Outfit Score</th><th>Burps?</th></tr>
-    <tr><td>89</td><td>8</td><td>9</td><td>9</td><td>1</td><td>8</td><td>0</td></tr>
-    <tr><td>76</td><td>6</td><td>8</td><td>7</td><td>0</td><td>7</td><td>1</td></tr>
-    <tr><td>92</td><td>9</td><td>9</td><td>10</td><td>1</td><td>9</td><td>0</td></tr>
-    <tr><td>65</td><td>5</td><td>6</td><td>6</td><td>0</td><td>6</td><td>1</td></tr>
-    <tr><td>81</td><td>7</td><td>7</td><td>8</td><td>1</td><td>8</td><td>0</td></tr>
-    <tr><td>59</td><td>4</td><td>5</td><td>5</td><td>0</td><td>5</td><td>1</td></tr>
-  </table>
-  <p>Now, we are ready to feed the values for each row sequentially into our Neural Network.</p>
-  <hr>
-  <h2>The Input Layer</h2>
-  <p>Check out the visualization below, I've coded those SVGs myself :)</p>
-  <img src="./ann assets/Neuron anim 1.svg"><br/>
-  <p>This diagram shows how the values will be sent to each hidden layer neuron.</p>
-  <p>And here's how it actually works in a real neural network—each input connects to every neuron in the hidden layer (aka a fully connected layer):</p>
-  <img src="./ann assets/Neuron anim 2.svg"><br/>
-  <p>I know this looks pretty complex, but honestly, it's just a repetitive task happening.</p>
-  <p>Each arrow from an input neuron to a hidden layer neuron is like a mantra chanted several times, with a few small changes, that eventually builds up to a big change.</p>
-  <p>Let's take a single input neuron to understand what's happening. Check out the diagram below:</p>
-  <img src="./ann assets/Weights.png"><br/>
-  <p>The green-colored input neuron holds a value of <strong>6</strong>, which gets sent to each of the hidden layer neurons—$H1$, $H2$, and $H3$.</p>
-  <p>$W1$, $W2$, and $W3$  are called <strong>weights</strong>. You can think of weights as the <em>importance</em> or <em>emphasis</em> assigned to an input.</p>
-  <p>It's kind of like choosing what to order at your favorite restaurant—you don't treat all items equally, right? The one you crave the most gets top priority. Neural networks do the same with inputs.</p>
-  <p>So, in simple terms we get a term like,</p>  
-   <blockquote>$\displaystyle z\ =\ W_{1} .( 6)$</blockquote>
-  <p>This is what we send to the $H1$ neuron.</p>
-  <p>In a generalized way,</p>
-  <blockquote>$z = W_1.X_1$</blockquote>
-  <p>But hold on—We're not done yet. We are missing a very vital term here: the <strong>bias</strong> term.<br/>
-    Now where does this new guy come from? And most importantly—<strong>why?</strong><br/>    
-    Let me explain.<br/>   
-    Remember that favorite item in the menu, you prioritized?<br/>
-    Do you always order it, even when you are with your friends?<br/>
-    <strong>Hell no.</strong><br/>    
-    Your friends have opinions, and you end up with some horrible new dish.<br/>
-    That's what <strong>bias</strong> does—but in a <em>good</em> way. It adjusts the output value slightly and prevents $z$ from always being zero if $X_1 = 0$.<br/>
-    Because if a feature happens to have 0s in it, it doesn't necessarily mean the feature in itself is irrelevant, though it <em>can</em> be, but we can't assume that. Bias makes sure we don't end up ignoring some useful insight.<br/>    
-    Thus, our updated equation becomes,<br/>
-    <blockquote>$z = W_1.X_1 + B$</blockquote>
-    This $z$ is what we are feeding to the $H1$ neuron.<br/>
-    Similarly, we send the other feature's values to $H1$, with new *weights* and *biases* (Not the same $W_1$ and $B_1$).<br/>
-    All, the $z_i$, where $i$ is the feature selected, are added up inside the $H_1$neuron, which in looks like this,</p>
-
-    <blockquote>$z = (W_0 \cdot X_0 + B_0) +(W_1 \cdot X_1 + B_1) +(W_2 \cdot X_2 + B_2) .... $</blockquote>
-
-    <p>Or,</p>
-
-    <blockquote>$z = (W_0.X_0 + W_1.X_1+W_1.X_2....) + B$</blockquote>
-
-    <p>Or better,</p>
-
-    <blockquote>$z = \sum_{i=1}^{n} W_i \cdot X_i + B$</blockquote>
-
-    <p>We've replaced that big, messy bias sum with a single constant $B$ for simplicity.<br/>
-    This entire thing is what we call a weighted sum.<br/>
-    This is what a single hidden-layer neuron gets as an input.</p>
-  <hr>
-  <h2>The Hidden Layer</h2>
-  <p>Enough math talk—remember that restaurant example from earlier? Yup, we're going back to it again.<br/>
-    So, you and your friends discuss the dish you want, and let's be real, you don't give them a direct yes/no as an answer—unless you talk in binary.<br/>
-    You show your interest in a fuzzy way, like:<br/>
-    <em>"yeah, <strong>maybe</strong> we can try this…"</em><br/>
-    <em>"Hmm, I'm not sure but okay…"</em><br/>
-    This is exactly what happens inside a neuron after the weighted sum is calculated.<br/>
-    We send that $z$ into an activation function—which transforms the straightforward linear input into a non-linear output.<br/>
-    But I know what you're thinking…<br/>
-    <em>"Why, though? What's the point of all this extra math seasoning?"</em><br/>
-    Because <em>without</em> an activation function, all your fancy neural network math just boils down to a glorified straight line.<br/>
-    Like seriously—no matter how many layers you add, the whole thing still ends up as one boring equation that looks like:</p>
-    <blockquote>$y = m.x + c$</blockquote>
-    <p>And guess what? A straight line can't bend, curve, or wiggle to fit complex data.<br/>
-      The Activation Function is the superpower that helps the Neural Network to bend and adapt to the underlying pattern and fit itself into it.<br/>
-      There are a lot of activation functions available to use, the most famous one being ReLU, or Rectified Linear Unit. The function is like this:</p>
-    <blockquote>$ReLU(z) = max(0, z)$</blockquote>
-    <iframe src="https://www.desmos.com/calculator/mpooib3mfq?embed" width="800" height="400" style="border: 1px solid #ccc" frameborder=0></iframe>
-    <p>There are other activation functions like :<br/>
-      <ul>
-        <li>Sigmoid Function</li>
-        <li>Softmax Function</li>
-        <li>Leaky ReLU Function</li>
-        <li>Tanh Function</li>
-      </ul>
-      to name a few.<br/>
-      All these have their purposes depending on the dataset we have. I'll discuss it in some other blog in detail.<br/>
-      So, our hidden layer neuron transforms that boring:</p>
+  <a href="../index.html" class="back-home">← Back to Home</a>
+  <section>
+    <div class="cover-image">
+      <img src="./ann assets/img1.png" class="cover-art" alt="Neural Network Cover Art">
+    </div>
+    <h1>Artificial Neural Network (ANN)</h1>
+    <p class="meta">Author: Bibek Ray &nbsp;&nbsp;|&nbsp;&nbsp; Date: 28th April 2025</p>
+    
+    <p>Classical ML has been around for a long time and has been proven beneficial in many areas. However, it still lacks the accuracy needed for more complex datasets, which have many variables affecting a certain outcome.</p>
+    
+    <p>For that, we have <strong>Artificial Neural Networks</strong>. Sounds cool, right? Wait until you understand how they work and the math behind them.</p>
+    
+    <h2>Where does it all begin?</h2>
+    <p>Let's start from the very basics.</p>
+    <p><em>What's a <strong>Neuron</strong>?</em></p>
+    <p>A Neuron, in biological terms, is <em>the fundamental unit of the nervous system, specialized to transmit information to different parts of the body</em>. Basically, it's like a tiny messenger that carries information from one place to another. And we use this same concept to build an amazing architecture which is called ANN.</p>
+    <p>In deep learning, a neuron, specifically those inside the hidden layers, is a computational unit that receives inputs, processes them, and produces an output through an <strong>activation function</strong>.</p>
+    
+    <img src="ann assets/Input Neuron.svg"><br/>
+    <p class="meta">The Input Neuron</p>
+    
+    <p>The Hidden Layer Neuron shown below explains what computation it does inside. We'll talk about it in detail in a few minutes.</p>
+    
+    <img src="ann assets/Hidden Neuron.svg"><br/>
+    <p class="meta">The Hidden Neuron</p>
+    
+    <p>I know that was a lot to take in—but don't worry, you're about to see it all click.</p>
+    
+    <h2>Creating and Preparing our Data first</h2>
+    <h3>Let's have some sample data first... but this one will be funny.</h3>
+    
+    <p>Suppose we've got a totally legit, not-at-all-made-up dataset measuring someone's Smartness Score based on their overall <strong>Aura</strong>.</p>
+    
+    <table>
+      <tr><th>Smartness Score</th><th>Name</th><th>Hairstyle Score</th><th>Speaking Score</th><th>Confidence Score</th><th>Vegan</th><th>Outfit Score</th><th>Burps?</th></tr>
+      <tr><td>89</td><td>Ayam</td><td>8</td><td>9</td><td>9</td><td>Yes</td><td>8</td><td>No</td></tr>
+      <tr><td>76</td><td>Renu</td><td>6</td><td>8</td><td>7</td><td>0</td><td>7</td><td>Yes</td></tr>
+      <tr><td>92</td><td>Simi</td><td>9</td><td>9</td><td>10</td><td>1</td><td>9</td><td>No</td></tr>
+      <tr><td>65</td><td>Vikram</td><td>5</td><td>6</td><td>6</td><td>0</td><td>6</td><td>Yes</td></tr>
+      <tr><td>81</td><td>Soham</td><td>7</td><td>7</td><td>8</td><td>1</td><td>8</td><td>No</td></tr>
+      <tr><td>59</td><td>Meera</td><td>4</td><td>5</td><td>5</td><td>0</td><td>5</td><td>Yes</td></tr>
+    </table>
+    
+    <p>I guess it's the wildest dataset you've ever seen…</p>
+    <p>If you pay close attention to the table above, you can see how certain scores affect the smartness score. But, it's based on your very intuition, or better—your gut feeling. There's no proof, or mathematical evidence, yet, for you to say that, <em>"Hey, is burping reducing my smartness score—my Aura?"</em></p>
+    <p>So, now we need a proof.</p>
+    <p>Proof that burping and other features affect the smartness score. And Neural Network will help us figuring it out.</p>
+    <p>Before diving into the technical part, let's first clear some basic terminologies that are followed by a variety of research papers, Udemy courses, and books.</p>
+    <p>We have,</p>
+    <p>A Dependent Variable ⇒ y</p>
+    <p>An Independent Variable ⇒ x</p>
+    <p>In our case, we are dealing with multiple independent variables, namely:</p>
+    <table>
+      <tr><th>Variable</th><th>Symbol</th></tr>
+      <tr><td>Hairstyle Score</td><td>X₀</td></tr>
+      <tr><td>Speaking Score</td><td>X₁</td></tr>
+      <tr><td>Confidence Score</td><td>X₂</td></tr>
+      <tr><td>Vegan</td><td>X₃</td></tr>
+      <tr><td>Outfit Score</td><td>X₄</td></tr>
+      <tr><td>Burps</td><td>X₅</td></tr>
+    </table>
+    
+    <p>Notice that we have only 6 variables mentioned above, although there were 7 features in the original dataset. This is because we've excluded the *Name* independent variable since it has no relevance in predicting the smartness score—after all, who judges someone's smartness by their name? Not me!</p>
+    <p>Therefore, we'll drop that column before feeding the dataset into the neural network model.</p>
+    <p>Additionally, a machine doesn't understand 'Yes' or 'No'. So we have to convert those values in the table, for the columns <strong>Vegan</strong> and <strong>Burps</strong>, to number notations, where:</p>
+    <p>'Yes' ⇒ 1 <br> 'No' ⇒ 0</p>
+    <p>The above step is an important step in Data Preprocessing, and is done almost every time whenever you have to prepare a dataset for training. This process is called Encoding.</p> 
+    <p>The specific Encoding we are doing here is called Label Encoding. I'll skip the deep dive into the types of encoding for now, but it's definitely worth reading up later.</p>
+    <p>Thus, our updated dataset will look like this:</p>
+    <table>
+      <tr><th>Smartness Score</th><th>Hairstyle Score</th><th>Speaking Score</th><th>Confidence Score</th><th>Vegan</th><th>Outfit Score</th><th>Burps?</th></tr>
+      <tr><td>89</td><td>8</td><td>9</td><td>9</td><td>1</td><td>8</td><td>0</td></tr>
+      <tr><td>76</td><td>6</td><td>8</td><td>7</td><td>0</td><td>7</td><td>1</td></tr>
+      <tr><td>92</td><td>9</td><td>9</td><td>10</td><td>1</td><td>9</td><td>0</td></tr>
+      <tr><td>65</td><td>5</td><td>6</td><td>6</td><td>0</td><td>6</td><td>1</td></tr>
+      <tr><td>81</td><td>7</td><td>7</td><td>8</td><td>1</td><td>8</td><td>0</td></tr>
+      <tr><td>59</td><td>4</td><td>5</td><td>5</td><td>0</td><td>5</td><td>1</td></tr>
+    </table>
+    <p>Now, we are ready to feed the values for each row sequentially into our Neural Network.</p>
+    <hr>
+    <h2>The Input Layer</h2>
+    <p>Check out the visualization below, I've coded those SVGs myself :)</p>
+    <img src="./ann assets/Neuron anim 1.svg"><br/>
+    <p>This diagram shows how the values will be sent to each hidden layer neuron.</p>
+    <p>And here's how it actually works in a real neural network—each input connects to every neuron in the hidden layer (aka a fully connected layer):</p>
+    <img src="./ann assets/Neuron anim 2.svg"><br/>
+    <p>I know this looks pretty complex, but honestly, it's just a repetitive task happening.</p>
+    <p>Each arrow from an input neuron to a hidden layer neuron is like a mantra chanted several times, with a few small changes, that eventually builds up to a big change.</p>
+    <p>Let's take a single input neuron to understand what's happening. Check out the diagram below:</p>
+    <img src="./ann assets/Weights.png"><br/>
+    <p>The green-colored input neuron holds a value of <strong>6</strong>, which gets sent to each of the hidden layer neurons—$H1$, $H2$, and $H3$.</p>
+    <p>$W1$, $W2$, and $W3$  are called <strong>weights</strong>. You can think of weights as the <em>importance</em> or <em>emphasis</em> assigned to an input.</p>
+    <p>It's kind of like choosing what to order at your favorite restaurant—you don't treat all items equally, right? The one you crave the most gets top priority. Neural networks do the same with inputs.</p>
+    <p>So, in simple terms we get a term like,</p>  
+    <blockquote>$\displaystyle z\ =\ W_{1} .( 6)$</blockquote>
+    <p>This is what we send to the $H1$ neuron.</p>
+    <p>In a generalized way,</p>
+    <blockquote>$z = W_1.X_1$</blockquote>
+    <p>But hold on—We're not done yet. We are missing a very vital term here: the <strong>bias</strong> term.<br/>
+      Now where does this new guy come from? And most importantly—<strong>why?</strong><br/>    
+      Let me explain.<br/>   
+      Remember that favorite item in the menu, you prioritized?<br/>
+      Do you always order it, even when you are with your friends?<br/>
+      <strong>Hell no.</strong><br/>    
+      Your friends have opinions, and you end up with some horrible new dish.<br/>
+      That's what <strong>bias</strong> does—but in a <em>good</em> way. It adjusts the output value slightly and prevents $z$ from always being zero if $X_1 = 0$.<br/>
+      Because if a feature happens to have 0s in it, it doesn't necessarily mean the feature in itself is irrelevant, though it <em>can</em> be, but we can't assume that. Bias makes sure we don't end up ignoring some useful insight.<br/>    
+      Thus, our updated equation becomes,<br/>
+      <blockquote>$z = W_1.X_1 + B$</blockquote>
+      This $z$ is what we are feeding to the $H1$ neuron.<br/>
+      Similarly, we send the other feature's values to $H1$, with new *weights* and *biases* (Not the same $W_1$ and $B_1$).<br/>
+      All, the $z_i$, where $i$ is the feature selected, are added up inside the $H_1$neuron, which in looks like this,</p>
+      
+      <blockquote>$z = (W_0 \cdot X_0 + B_0) +(W_1 \cdot X_1 + B_1) +(W_2 \cdot X_2 + B_2) .... $</blockquote>
+      
+      <p>Or,</p>
+      
+      <blockquote>$z = (W_0.X_0 + W_1.X_1+W_1.X_2....) + B$</blockquote>
+      
+      <p>Or better,</p>
+      
       <blockquote>$z = \sum_{i=1}^{n} W_i \cdot X_i + B$</blockquote>
-      <p>into:</p>
-      <blockquote>$y = max(0, \sum_{i=1}^{n} W_i \cdot X_i + B)$</blockquote>
-      <p>Or better, if we write it as,</p>
-      <blockquote>$y = max(0, z)$</blockquote>
-      <p>Now, the most important question that might bother you is the ReLU function in itself.<br/>
-        If you look at it carefully, the first question that might pop into your head is:<br/>        
-        <em>"Wait, how is that non-linear? It just replaces negative values with 0—the rest passes through untouched."</em><br/>
-        And honestly? That's a <strong>valid</strong> question.<br/>
-        Because visually, ReLU looks like <strong>two lines</strong> glued together:<br/>
+      
+      <p>We've replaced that big, messy bias sum with a single constant $B$ for simplicity.<br/>
+        This entire thing is what we call a weighted sum.<br/>
+        This is what a single hidden-layer neuron gets as an input.</p>
+        <hr>
+        <h2>The Hidden Layer</h2>
+        <p>Enough math talk—remember that restaurant example from earlier? Yup, we're going back to it again.<br/>
+          So, you and your friends discuss the dish you want, and let's be real, you don't give them a direct yes/no as an answer—unless you talk in binary.<br/>
+          You show your interest in a fuzzy way, like:<br/>
+          <em>"yeah, <strong>maybe</strong> we can try this…"</em><br/>
+          <em>"Hmm, I'm not sure but okay…"</em><br/>
+          This is exactly what happens inside a neuron after the weighted sum is calculated.<br/>
+          We send that $z$ into an activation function—which transforms the straightforward linear input into a non-linear output.<br/>
+          But I know what you're thinking…<br/>
+          <em>"Why, though? What's the point of all this extra math seasoning?"</em><br/>
+          Because <em>without</em> an activation function, all your fancy neural network math just boils down to a glorified straight line.<br/>
+          Like seriously—no matter how many layers you add, the whole thing still ends up as one boring equation that looks like:</p>
+          <blockquote>$y = m.x + c$</blockquote>
+          <p>And guess what? A straight line can't bend, curve, or wiggle to fit complex data.<br/>
+            The Activation Function is the superpower that helps the Neural Network to bend and adapt to the underlying pattern and fit itself into it.<br/>
+      There are a lot of activation functions available to use, the most famous one being ReLU, or Rectified Linear Unit. The function is like this:</p>
+      <blockquote>$ReLU(z) = max(0, z)$</blockquote>
+      <iframe src="https://www.desmos.com/calculator/mpooib3mfq?embed" width="800" height="400" style="border: 1px solid #ccc" frameborder=0></iframe>
+      <p>There are other activation functions like :<br/>
         <ul>
-          <li>A flat line for negative inputs</li>
-          <li>A diagonal line for positives</li>
+          <li>Sigmoid Function</li>
+          <li>Softmax Function</li>
+          <li>Leaky ReLU Function</li>
+          <li>Tanh Function</li>
         </ul>
-        So what gives?<br/>
-        Even though both sides of ReLU are <strong>individually linear</strong>, the moment they <strong>meet at $z = 0$</strong>, something special happens.<br/>
-        That sharp <strong>bend</strong>—the sudden change in behavior at $z = 0$ —is what breaks the pure linearity.<br/>        
-        If ReLU were truly linear, then no matter how many layers you stack, the entire network would behave like just <strong>one big linear equation</strong>. That means:<br/>
-        <ul>
-          <li>No curves</li>
-          <li>No boundaries</li>
-          <li>No deep learning</li>
-        </ul>
+        to name a few.<br/>
+        All these have their purposes depending on the dataset we have. I'll discuss it in some other blog in detail.<br/>
+        So, our hidden layer neuron transforms that boring:</p>
+        <blockquote>$z = \sum_{i=1}^{n} W_i \cdot X_i + B$</blockquote>
+        <p>into:</p>
+        <blockquote>$y = max(0, \sum_{i=1}^{n} W_i \cdot X_i + B)$</blockquote>
+        <p>Or better, if we write it as,</p>
+        <blockquote>$y = max(0, z)$</blockquote>
+        <p>Now, the most important question that might bother you is the ReLU function in itself.<br/>
+          If you look at it carefully, the first question that might pop into your head is:<br/>        
+          <em>"Wait, how is that non-linear? It just replaces negative values with 0—the rest passes through untouched."</em><br/>
+          And honestly? That's a <strong>valid</strong> question.<br/>
+          Because visually, ReLU looks like <strong>two lines</strong> glued together:<br/>
+          <ul>
+            <li>A flat line for negative inputs</li>
+            <li>A diagonal line for positives</li>
+          </ul>
+          So what gives?<br/>
+          Even though both sides of ReLU are <strong>individually linear</strong>, the moment they <strong>meet at $z = 0$</strong>, something special happens.<br/>
+          That sharp <strong>bend</strong>—the sudden change in behavior at $z = 0$ —is what breaks the pure linearity.<br/>        
+          If ReLU were truly linear, then no matter how many layers you stack, the entire network would behave like just <strong>one big linear equation</strong>. That means:<br/>
+          <ul>
+            <li>No curves</li>
+            <li>No boundaries</li>
+            <li>No deep learning</li>
+          </ul>
         In the simplest way, ReLU plays the role of a party bouncer. If you aren't invited, i.e. <strong>not an important feature,</strong> you will not be allowed in the NN's training party. It basically acts as an ON/OFF switch for the features to get selected for the model's output.<br/>
         This sparsity (most neurons staying off for any given input) actually helps the network focus on what's truly important—and ignore the noise.<br/>
-      
+        
         Once the Activation Function does its job, it sends its output to the Output Layer, if we have no more hidden layers further.</p>
         <hr>
         <h2>The Output Layer</h2>
@@ -508,84 +513,85 @@
           
           We'll talk about each of these in some other blog, solely focusing on them.<br/>
           But for now, let's look into the MSE for once:<br/>
-        <blockquote>$\text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2$</blockquote>
-        Here,<br/>
-        <ul>  
-          <li>$y_i$ = actual value</li>
-          <li>$\hat{y}_i$ = predicted value</li>
-          <li>$n$ = total number of samples</li>
-        </ul>
-        It's a pretty simple function. In fact, this is the function that you first see when you begin your classical machine learning journey. (Remember linear regression and the best fit line?)<br/>
-        Great, we know the error—let's throw confetti now.<br/>
-        Just kidding.<br/>
-        I know the error, you know the error, but the neural network?<br/>
-        To it, the error is just another number. It has no idea what to do with it—<em>yet.</em><br/>
-        This is the moment when we pull out calculus and start investigating the function in depth. We calculate the first partial derivative of the MSE with respect to:<br/>
-        <ul>  
-          <li>The weights($W$)</li>
-          <li>The biases($B$)</li>
-        </ul>
-        Why partial derivatives?<br/>
-        Because that helps us isolate one parameter by treating it as a constant and observing how the change in the other parameter affects the MSE.<br/>
-        Let me show you the derivatives too:<br/>
-        <ul>
-          <li>For weights:<br/><blockquote>$\frac{\partial\, \text{MSE}}{\partial W_j} = -\frac{2}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i) \cdot \frac{\partial \hat{y}_i}{\partial W_j}$</blockquote></li>
-          <li>For biases:<br/><blockquote>$\frac{\partial\, \text{MSE}}{\partial B} = -\frac{2}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)$</blockquote></li>        
-        </ul>
-        The derivatives tell us two things:<br/>
-        <ul>
-          <li>How much does the error change for a tiny change in the parameter's value</li>
-          <li>In what direction the change is happening, i.e, positive or negative</li>
-        </ul>
-        In simple words,<br/>
-        <ul>
-          <li>If the derivative is <strong>positive</strong>, increasing the parameter <strong>increases the error.</strong> (Bad!)</li>
-          <li>If the derivative is <strong>negative</strong>, increasing the parameter <strong>decreases the error.</strong> (Good!)</li>
-        </ul>
-        Accordingly, we update our parameters using the following equation:<br/>
-        <blockquote>$\theta_{\text{new}} = \theta_{\text{old}} - \eta \cdot \frac{\partial\, \text{Loss}}{\partial \theta}$</blockquote>
-        where,<br/>
-        <ul>
-          <li>$\theta$ = parameter (weight or bias)</li>
-          <li>$\eta$ = learning rate</li>
-          <li>$\frac{\partial, \text{Loss}}{\partial \theta}$ = partial derivative of the loss with respect to the parameter (the "slope")</li>
-        </ul>
-        And this wonderful equation is called the <strong>Gradient Descent</strong>.<br/>
-        Check the animation below:<br/>
-        <img src="./ann assets/Backpropagation.svg" height="350px"><br/>
-        <ul>
-          <li><strong>Forward Pass:</strong> Data moves from the input layer, through the hidden layer, to the output layer—making a prediction.</li>
-          <li><strong>Backward Pass (Backpropagation):</strong> The loss function calculates the error, then sends feedback (gradients) backward—from the output layer through the hidden layers—so the network can learn and improve.</li>
-        </ul>
-      </p>
-      <hr>
-      <h2>And……then?</h2>
-      <p>Well, that's it! That's how a neural network works—from smartness scores and restaurant orders to math, neurons, and learning.<br/>
-        Yeah, I know. We started with a "smartness score" table, detoured into restaurant analogies, and maybe got a little chaotic along the way. But if you stuck with me, you now understand how the <em>architecture</em> actually works—and, honestly, that's what matters.<br/>
-        There's a TON more you could dive into after this:<br/>
-        <ul>
-          <li><strong>Deep Neural Networks:</strong> (Just a neural net with lots of hidden layers—welcome to "deep" learning.)</li>
-          <li><strong>Vanishing/exploding gradients:</strong> Why training deep networks can be tricky.</li>
-          <li><strong>Different activation functions:</strong> When to use ReLU, sigmoid, softmax, etc.</li>
-          <li><strong>Practical differences in classification vs regression tasks</strong></li>
-          <li>And a million other "blah blah blah" topics you'll see in every other ML blog.</li>
-        </ul>
-      </p>
-      <hr>
-      <h2>Read more...</h2>
-      <p>Wanna play with some neural network parameters yourself?<br/>
-        Try <a href="https://developers.google.com/machine-learning/crash-course/linear-regression/gradient-descent-exercise" target="_blank">this interactive playground</a> <br/>
-        Check out my other blog: <a href="https://sable-thorium-3c4.notion.site/A-Short-story-on-Generative-Adversarial-Networks-GANs-1d833ff75add80fc8940f98494433ee1" target="_blank">A Short Story on Generative Adversarial Networks (GANs)</a> <br/>
-        If you have further questions, hit me up on <a href="https://www.linkedin.com/in/bibek-ray-061727220/" target="_blank">LinkedIn</a>. <br/>
-        That's it from my side. Catch you in the next blog!
-      </p>
-      <hr>
-      <script>
-        MathJax = {
-          tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
-          svg: { fontCache: 'global' }
-        };
+          <blockquote>$\text{MSE} = \frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2$</blockquote>
+          Here,<br/>
+          <ul>  
+            <li>$y_i$ = actual value</li>
+            <li>$\hat{y}_i$ = predicted value</li>
+            <li>$n$ = total number of samples</li>
+          </ul>
+          It's a pretty simple function. In fact, this is the function that you first see when you begin your classical machine learning journey. (Remember linear regression and the best fit line?)<br/>
+          Great, we know the error—let's throw confetti now.<br/>
+          Just kidding.<br/>
+          I know the error, you know the error, but the neural network?<br/>
+          To it, the error is just another number. It has no idea what to do with it—<em>yet.</em><br/>
+          This is the moment when we pull out calculus and start investigating the function in depth. We calculate the first partial derivative of the MSE with respect to:<br/>
+          <ul>  
+            <li>The weights($W$)</li>
+            <li>The biases($B$)</li>
+          </ul>
+          Why partial derivatives?<br/>
+          Because that helps us isolate one parameter by treating it as a constant and observing how the change in the other parameter affects the MSE.<br/>
+          Let me show you the derivatives too:<br/>
+          <ul>
+            <li>For weights:<br/><blockquote>$\frac{\partial\, \text{MSE}}{\partial W_j} = -\frac{2}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i) \cdot \frac{\partial \hat{y}_i}{\partial W_j}$</blockquote></li>
+            <li>For biases:<br/><blockquote>$\frac{\partial\, \text{MSE}}{\partial B} = -\frac{2}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)$</blockquote></li>        
+          </ul>
+          The derivatives tell us two things:<br/>
+          <ul>
+            <li>How much does the error change for a tiny change in the parameter's value</li>
+            <li>In what direction the change is happening, i.e, positive or negative</li>
+          </ul>
+          In simple words,<br/>
+          <ul>
+            <li>If the derivative is <strong>positive</strong>, increasing the parameter <strong>increases the error.</strong> (Bad!)</li>
+            <li>If the derivative is <strong>negative</strong>, increasing the parameter <strong>decreases the error.</strong> (Good!)</li>
+          </ul>
+          Accordingly, we update our parameters using the following equation:<br/>
+          <blockquote>$\theta_{\text{new}} = \theta_{\text{old}} - \eta \cdot \frac{\partial\, \text{Loss}}{\partial \theta}$</blockquote>
+          where,<br/>
+          <ul>
+            <li>$\theta$ = parameter (weight or bias)</li>
+            <li>$\eta$ = learning rate</li>
+            <li>$\frac{\partial, \text{Loss}}{\partial \theta}$ = partial derivative of the loss with respect to the parameter (the "slope")</li>
+          </ul>
+          And this wonderful equation is called the <strong>Gradient Descent</strong>.<br/>
+          Check the animation below:<br/>
+          <img src="./ann assets/Backpropagation.svg" height="350px"><br/>
+          <ul>
+            <li><strong>Forward Pass:</strong> Data moves from the input layer, through the hidden layer, to the output layer—making a prediction.</li>
+            <li><strong>Backward Pass (Backpropagation):</strong> The loss function calculates the error, then sends feedback (gradients) backward—from the output layer through the hidden layers—so the network can learn and improve.</li>
+          </ul>
+        </p>
+        <hr>
+        <h2>And……then?</h2>
+        <p>Well, that's it! That's how a neural network works—from smartness scores and restaurant orders to math, neurons, and learning.<br/>
+          Yeah, I know. We started with a "smartness score" table, detoured into restaurant analogies, and maybe got a little chaotic along the way. But if you stuck with me, you now understand how the <em>architecture</em> actually works—and, honestly, that's what matters.<br/>
+          There's a TON more you could dive into after this:<br/>
+          <ul>
+            <li><strong>Deep Neural Networks:</strong> (Just a neural net with lots of hidden layers—welcome to "deep" learning.)</li>
+            <li><strong>Vanishing/exploding gradients:</strong> Why training deep networks can be tricky.</li>
+            <li><strong>Different activation functions:</strong> When to use ReLU, sigmoid, softmax, etc.</li>
+            <li><strong>Practical differences in classification vs regression tasks</strong></li>
+            <li>And a million other "blah blah blah" topics you'll see in every other ML blog.</li>
+          </ul>
+        </p>
+        <hr>
+        <h2>Read more...</h2>
+        <p>Wanna play with some neural network parameters yourself?<br/>
+          Try <a href="https://developers.google.com/machine-learning/crash-course/linear-regression/gradient-descent-exercise" target="_blank">this interactive playground</a> <br/>
+          Check out my other blog: <a href="https://sable-thorium-3c4.notion.site/A-Short-story-on-Generative-Adversarial-Networks-GANs-1d833ff75add80fc8940f98494433ee1" target="_blank">A Short Story on Generative Adversarial Networks (GANs)</a> <br/>
+          If you have further questions, hit me up on <a href="https://www.linkedin.com/in/bibek-ray-061727220/" target="_blank">LinkedIn</a>. <br/>
+          That's it from my side. Catch you in the next blog!
+        </p>
+        <hr>
+        <script>
+          MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+            svg: { fontCache: 'global' }
+          };
       </script>
+</section>
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
 </body>
 </html>
