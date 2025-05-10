@@ -13,7 +13,7 @@ section{
   padding: 50px 25px;
   max-width: 950px;
   margin: auto;
-  line-height: 1.8;
+  line-height: 2.0;
   font-size: 1.1rem;
   letter-spacing: 0.3px;
 }
@@ -76,6 +76,10 @@ h3 {
   color: #7fc7ff;
 }
 
+.two-column-image{
+  display: flex;
+}
+
 /* META */
 .meta {
   font-size: 0.95rem;
@@ -84,6 +88,10 @@ h3 {
   margin-bottom: 45px;
   display: block;
   font-style: italic;
+}
+
+span{
+  color: rgb(49, 108, 236);
 }
 
 /* LINKS */
