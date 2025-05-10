@@ -44,6 +44,10 @@ transform: scale(1.02);
 .cover-image {
 margin: -15px -15px 30px;
 }
+.two-column-image{
+  display: flex;
+  flex-direction: column;
+}
 }
 
 /* HEADINGS */
