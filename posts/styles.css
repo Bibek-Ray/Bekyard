@@ -1,12 +1,22 @@
 /* GLOBAL STYLING */
 body {
   font-family: 'Fira Sans', sans-serif;
-  background: url("./ann assets/bg.png");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size:auto;
-  background-attachment: fixed;
+  background: none !important;
   overflow-x: hidden;
+  animation: fadeIn 0.8s ease-out;
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('./ann assets/bg.png') center center / cover no-repeat;
+  z-index: -1;
+  opacity: 0.9; /* adjust if needed */
+  pointer-events: none;
+  will-change: transform;
 }
 section{
   color: #e1eaf5;
