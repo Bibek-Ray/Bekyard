@@ -18,13 +18,13 @@
     
     <p>Classical ML has been around for a long time and has been proven beneficial in many areas. However, it still lacks the accuracy needed for more complex datasets, which have many variables affecting a certain outcome.</p>
     
-    <p>For that, we have <strong>Artificial Neural Networks</strong>. Sounds cool, right? Wait until you understand how they work and the math behind them.</p>
+    <p>For that, we have <strong><span>Artificial Neural Networks</span></strong>. Sounds cool, right? Wait until you understand how they work and the math behind them.</p>
     
     <h2>Where does it all begin?</h2>
     <p>Let's start from the very basics.</p>
-    <p><em>What's a <strong>Neuron</strong>?</em></p>
-    <p>A Neuron, in biological terms, is <em>the fundamental unit of the nervous system, specialized to transmit information to different parts of the body</em>. Basically, it's like a tiny messenger that carries information from one place to another. And we use this same concept to build an amazing architecture which is called ANN.</p>
-    <p>In deep learning, a neuron, specifically those inside the hidden layers, is a computational unit that receives inputs, processes them, and produces an output through an <strong>activation function</strong>.</p>
+    <p><em>What's a <strong><span>Neuron</span></strong>?</em></p>
+    <p>A Neuron, in biological terms, is <em>the fundamental unit of the nervous system, specialized to transmit information to different parts of the body</em>. Basically, it's like a tiny messenger that <span>carries information from one place to another</span>. And we use this same concept to build an amazing architecture which is called ANN.</p>
+    <p>In deep learning, a neuron, specifically those inside the hidden layers, is a computational unit that receives inputs, processes them, and produces an output through an <strong><span>activation function</span></strong>.</p>
     
     <img src="ann assets/Input Neuron.svg"><br/>
     <p class="meta">The Input Neuron</p>
@@ -37,7 +37,7 @@
     <p>I know that was a lot to take in—but don't worry, you're about to see it all click.</p>
     
     <h2>Creating and Preparing our Data first</h2>
-    <h3>Let's have some sample data first... but this one will be funny.</h3>
+    <h3>Let's have some sample data first... bet this one will be funny.</h3>
     
     <p>Suppose we've got a totally legit, not-at-all-made-up dataset measuring someone's Smartness Score based on their overall <strong>Aura</strong>.</p>
     
@@ -70,12 +70,12 @@
       <tr><td>Burps</td><td>X₅</td></tr>
     </table>
     
-    <p>Notice that we have only 6 variables mentioned above, although there were 7 features in the original dataset. This is because we've excluded the <em>Name</em> independent variable since it has no relevance in predicting the smartness score—after all, who judges someone's smartness by their name? Not me!</p>
+    <p>Notice that we have only 6 variables mentioned above, although there were 7 features in the original dataset. This is because we've excluded the *Name* independent variable since it has no relevance in predicting the smartness score—after all, who judges someone's smartness by their name? Not me!</p>
     <p>Therefore, we'll drop that column before feeding the dataset into the neural network model.</p>
     <p>Additionally, a machine doesn't understand 'Yes' or 'No'. So we have to convert those values in the table, for the columns <strong>Vegan</strong> and <strong>Burps</strong>, to number notations, where:</p>
     <p>'Yes' ⇒ 1 <br> 'No' ⇒ 0</p>
-    <p>The above step is an important step in Data Preprocessing, and is done almost every time whenever you have to prepare a dataset for training. This process is called Encoding.</p> 
-    <p>The specific Encoding we are doing here is called Label Encoding. I'll skip the deep dive into the types of encoding for now, but it's definitely worth reading up later.</p>
+    <p>The above step is an important step in Data Preprocessing, and is done almost every time whenever you have to prepare a dataset for training. This process is called <span>Encoding</span>.</p> 
+    <p>The specific Encoding we are doing here is called <span>Label Encoding</span>. I'll skip the deep dive into the types of encoding for now, but it's definitely worth reading up later.</p>
     <p>Thus, our updated dataset will look like this:</p>
     <table>
       <tr><th>Smartness Score</th><th>Hairstyle Score</th><th>Speaking Score</th><th>Confidence Score</th><th>Vegan</th><th>Outfit Score</th><th>Burps?</th></tr>
@@ -99,14 +99,14 @@
     <p>Let's take a single input neuron to understand what's happening. Check out the diagram below:</p>
     <img src="./ann assets/Weights.png"><br/>
     <p>The green-colored input neuron holds a value of <strong>6</strong>, which gets sent to each of the hidden layer neurons—$H1$, $H2$, and $H3$.</p>
-    <p>$W1$, $W2$, and $W3$  are called <strong>weights</strong>. You can think of weights as the <em>importance</em> or <em>emphasis</em> assigned to an input.</p>
+    <p>$W1$, $W2$, and $W3$  are called <strong><span>weights</span></strong>. You can think of weights as the <em>importance</em> or <em>emphasis</em> assigned to an input.</p>
     <p>It's kind of like choosing what to order at your favorite restaurant—you don't treat all items equally, right? The one you crave the most gets top priority. Neural networks do the same with inputs.</p>
     <p>So, in simple terms we get a term like,</p>  
     <blockquote>$\displaystyle z\ =\ W_{1} .( 6)$</blockquote>
     <p>This is what we send to the $H1$ neuron.</p>
     <p>In a generalized way,</p>
     <blockquote>$z = W_1.X_1$</blockquote>
-    <p>But hold on—We're not done yet. We are missing a very vital term here: the <strong>bias</strong> term.<br/>
+    <p>But hold on—We're not done yet. We are missing a very vital term here: the <strong><span>bias</span></strong> term.<br/>
       Now where does this new guy come from? And most importantly—<strong>why?</strong><br/>    
       Let me explain.<br/>   
       Remember that favorite item in the menu, you prioritized?<br/>
@@ -132,7 +132,7 @@
       <blockquote>$z = \sum_{i=1}^{n} W_i \cdot X_i + B$</blockquote>
       
       <p>We've replaced that big, messy bias sum with a single constant $B$ for simplicity.<br/>
-        This entire thing is what we call a weighted sum.<br/>
+        This entire thing is what we call a <strong><span>weighted sum</span></strong>.<br/>
         This is what a single hidden-layer neuron gets as an input.</p>
         <hr>
         <h2>The Hidden Layer</h2>
@@ -279,7 +279,7 @@
         <h2>Read more...</h2>
         <p>Wanna play with some neural network parameters yourself?<br/>
           Try <a href="https://developers.google.com/machine-learning/crash-course/linear-regression/gradient-descent-exercise" target="_blank">this interactive playground</a> <br/>
-          Check out my other blog: <a href="gan.html" target="_blank">A Short Story on Generative Adversarial Networks (GANs)</a> <br/>
+          Check out my other blog: <a href="https://sable-thorium-3c4.notion.site/A-Short-story-on-Generative-Adversarial-Networks-GANs-1d833ff75add80fc8940f98494433ee1" target="_blank">A Short Story on Generative Adversarial Networks (GANs)</a> <br/>
           If you have further questions, hit me up on <a href="https://www.linkedin.com/in/bibek-ray-061727220/" target="_blank">LinkedIn</a>. <br/>
           That's it from my side. Catch you in the next blog!
         </p>
