@@ -14,7 +14,6 @@ body::before {
   height: 100vh;
   background: url('./ann assets/bg.png') center center / cover no-repeat;
   z-index: -1;
-  opacity: 0.9; /* adjust if needed */
   pointer-events: none;
   will-change: transform;
 }
