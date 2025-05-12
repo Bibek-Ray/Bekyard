@@ -84,9 +84,10 @@
         <p class="meta">Cat's Face Feature Map using Sobel Kernel</p>
       </div>
     </div>
-    <p>I’ve used a pre-defined Kernel called “Sobel Kernel”. It’s used for edge detection specifically. But, in traditional CNNs, the Kernel matrix is part of the model training.</p>
-    <p>Once we get the feature map, we further shrink it to make training more easier and quick. This shrinking process is called <strong><span>Pooling</span></strong>.<br/>
-      We can either take the average of all the pixel values, to preserve the information for all the pixel into one single value or we can select the max value out of all the matrix values. The former one is called <strong>mean-pooling</strong> while the latter is the famous one, called <strong>max-pooling</strong>.</p>
+    <p>I’ve used a pre-defined Kernel called “Sobel Kernel”(two kernels — one for vertical and one for horizontal edge detection). It’s used for edge detection specifically. But, in traditional CNNs, the Kernel matrix is part of the model training.</p>
+    <h2>Pooling</h2>
+    <p>Once we get the feature map, we further shrink it to make training easier and faster. This shrinking process is called <strong><span>Pooling</span></strong>.<br/>
+      We can either take the average of all the pixel values, to preserve the information for all the pixels into one single value, or we can select the maximum value out of all the matrix values. The former one is called <strong>mean-pooling</strong> while the latter is the famous one, called <strong>max-pooling</strong>.</p>
     <img src="cnn assets/Max-Pool.svg" alt="Kernel Sliding">
     <p class="meta">Max-pooling in action</p>  
     <p>Pooling shrinks the feature map significantly—Like around 9 values getting replaced by 1 if we consider the pixels selected from the central region of the feature map.<br/>
@@ -95,7 +96,7 @@
       <p class="meta">Pooled Feature Map of Traumatised Cat</p>
       <p>Now this is what will be our final matrix that will be flattened and fed into the ANN for training.<br/><br/>
         Hell of a ride.<br/><br/>
-        BTW, a flattened matrix is a 2 dimensioned matrix converted to a 1 dimensional matrix. Kinda like a <strong>list</strong> in python or <strong>array</strong> in <em>C++</em> or <em>Java</em>—you get it.</p>
+        BTW, a flattened matrix is a 2-dimensional matrix converted to a 1-dimensional matrix. Kinda like a <strong>list</strong> in Python or <strong>array</strong> in <em>C++</em> or <em>Java</em>—you get it.</p>
     <h2>The ANN Layer</h2>
       <p>I have explained this one in my <a href="https://bekyard.vercel.app/posts/ann.html" target="_blank">ANN</a> blog, and almost everything from there remains the same, except the activation function in the last hidden layer.<br/>
         For Image Classification, we use the Sigmoid Activation Function instead of ReLU. Sometimes we use the Softmax Activation Function instead, especially when classifying more than two objects.<br/>
