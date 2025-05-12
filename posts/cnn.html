@@ -111,16 +111,39 @@
       The ANN currently will spit trash values in the name of a confidence score for the animal being cat. We need to fix that, moreover, the Loss function needs to fix that.<br/>
         First, let me show you the famous Binary Cross Entropy Loss Function <em>(Cool name right?)</em>,</p>
         <blockquote>$\mathcal{L}_{\text{BCE}} = -\left[ y \cdot \log(\hat{y}) + (1 - y) \cdot \log(1 - \hat{y}) \right]$</blockquote>
-      <iframe src="https://www.desmos.com/calculator/qr0iesidtz?embed" width="300" height="300" style="border: 1px solid #ccc" frameborder=0></iframe>
-    
-    
-    <h2>Read more...</h2>
-    <p>If you're still here, then congratulations—you are now 32x32% cooler.<br/>
-      Check out my blog on <a href="https://bekyard.vercel.app/posts/ann.html" target="_blank">ANN</a> if you missed it.<br/>
-      Follow me on <a href="https://www.linkedin.com/in/bibek-ray-061727220/" target="_blank">LinkedIn</a>.<br/>
-      And if you liked the humor here, do drop a feedback. Or a cat emoji. That works too.
-    </p>
-    
+      <p>Where,<br/>
+
+          $y = \text{The actual label}$<br/>
+          
+          $\hat{y} = \text{The predicted label}$<br/>
+          
+          Below I have shown a graph, have a look at that.</p>
+        <iframe src="https://www.desmos.com/calculator/5d7jydiyrw?embed" width="300" height="300" style="border: 1px solid #ccc" frameborder=0></iframe>
+        <p>The black line represents the BCE Loss function’s variation when the actual label is 1 and the predicted value moves between 0 and 1.</p>
+        <p>When the prediction is close to 1, the loss is low — the model is confident and right. But as the predicted value starts getting closer to 0, the loss increases rapidly. That sharp rise is the model being <strong>penalized</strong> for being confidently wrong.</p>
+        <p>This is how the loss function <em>teaches</em> the model: by punishing it harder the more wrong and overconfident it is.</p>
+        <p>The red line represents the exact opposite case, where actual is 0 and the predicted value fluctuates as usual. Same penalization, different direction.</p>
+        <h2>Backpropagation's Comeback</h2>
+        <p>Finally the <em>OG</em> Backpropagation comes to play. We trace back through the entire CNN and ANN pipeline fixing the weights and biases to reduce our loss.<br/>
+        We have discussed the formula in our <a href="https://bekyard.vercel.app/posts/ann.html">ANN</a><em>(P.S.- Read it!)</em> blog, but let me reiterate it once again,</p>
+        <blockquote>$w_{\text{new}} = w_{\text{old}} - \eta \cdot \frac{\partial \mathcal{L}}{\partial w}$</blockquote>
+        <p>You might be wondering, <em>"Hey, the loss function doesn't even have $w$ in it, how will it get partially differentiated by it?"</em><br/>
+           If you actually thought that—<strong>Good Observation Kiddo</strong><br/>
+           See, $\hat{y}$ is actually a function of weights and biases:<br/>
+           <blockquote>$\hat{y}=f(w,b)$</blockquote><br/>
+           Thus, it can be partially differentiated w.r.t $w$ and $b$ both.</p>
+          <h2>What's next?</h2>
+          <p>Nothing.<br/>
+          <strong>What!?</strong> Really, there nothing else!<br/>
+          It's all the same stuff that happened in ANN. Same old, iterations after iterations until the loss reduces to a certain threshold value. But yeah, this time a bit longer this time, since we are not only updating the ANN's weights and biases but the Kernel matrix's values too.
+          Remember that this time our input layer for the ANN is getting values from the flattened Pooled Matrix, which in itself is coming from the stacked Feature Maps that we got from each Kernel Matrix operation on the Image Matrix.</p>
+          <p>I tried to keep this blog less mathematical and more pictorial because CNN in itself is designed for images, and so it would have been quite ironic.</p>
+        <h2>Read more...</h2>
+        <p>If you're still here, then congratulations—you are now 32x32% cooler.<br/>
+          Check out my blog on <a href="https://bekyard.vercel.app/posts/ann.html" target="_blank">ANN</a> if you missed it.<br/>
+          Follow me on <a href="https://www.linkedin.com/in/bibek-ray-061727220/" target="_blank">LinkedIn</a>.<br/>
+          And if you liked the humor here, do drop a feedback(On LinkedIn). Or a cat emoji. That works too.
+        </p>   
     <script>
       MathJax = {
         tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
