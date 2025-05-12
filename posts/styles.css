@@ -288,6 +288,7 @@ height: 300px !important;
 blockquote {
 padding: 15px 20px;
 margin: 20px 0;
+overflow-x: auto;
 }
 }
 
