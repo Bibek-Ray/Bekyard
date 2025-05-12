@@ -87,7 +87,6 @@
       <tr><td>59</td><td>4</td><td>5</td><td>5</td><td>0</td><td>5</td><td>1</td></tr>
     </table>
     <p>Now, we are ready to feed the values for each row sequentially into our Neural Network.</p>
-    <hr>
     <h2>The Input Layer</h2>
     <p>Check out the visualization below, I've coded those SVGs myself :)</p>
     <img src="./ann assets/Neuron anim 1.svg"><br/>
@@ -134,7 +133,6 @@
       <p>We've replaced that big, messy bias sum with a single constant $B$ for simplicity.<br/>
         This entire thing is what we call a <strong><span>weighted sum</span></strong>.<br/>
         This is what a single hidden-layer neuron gets as an input.</p>
-        <hr>
         <h2>The Hidden Layer</h2>
         <p>Enough math talk—remember that restaurant example from earlier? Yup, we're going back to it again.<br/>
           So, you and your friends discuss the dish you want, and let's be real, you don't give them a direct yes/no as an answer—unless you talk in binary.<br/>
@@ -188,9 +186,8 @@
           </ul>
         In the simplest way, ReLU plays the role of a party bouncer. If you aren't invited, i.e. <strong>not an important feature,</strong> you will not be allowed in the NN's training party. It basically acts as an ON/OFF switch for the features to get selected for the model's output.<br/>
         This sparsity (most neurons staying off for any given input) actually helps the network focus on what's truly important—and ignore the noise.<br/>
-        
         Once the Activation Function does its job, it sends its output to the Output Layer, if we have no more hidden layers further.</p>
-        <hr>
+    
         <h2>The Output Layer</h2>
         <p>Finally, we reached the end of blog… or have we?<br/>
           If you have read this far, then you're either one hell of a learner, or I might actually be a decent writer. Let's be optimistic and say it's both.<br/>          
@@ -262,7 +259,6 @@
             <li><strong>Backward Pass (Backpropagation):</strong> The loss function calculates the error, then sends feedback (gradients) backward—from the output layer through the hidden layers—so the network can learn and improve.</li>
           </ul>
         </p>
-        <hr>
         <h2>And……then?</h2>
         <p>Well, that's it! That's how a neural network works—from smartness scores and restaurant orders to math, neurons, and learning.<br/>
           Yeah, I know. We started with a "smartness score" table, detoured into restaurant analogies, and maybe got a little chaotic along the way. But if you stuck with me, you now understand how the <em>architecture</em> actually works—and, honestly, that's what matters.<br/>
@@ -275,7 +271,6 @@
             <li>And a million other "blah blah blah" topics you'll see in every other ML blog.</li>
           </ul>
         </p>
-        <hr>
         <h2>Read more...</h2>
         <p>Wanna play with some neural network parameters yourself?<br/>
           Try <a href="https://developers.google.com/machine-learning/crash-course/linear-regression/gradient-descent-exercise" target="_blank">this interactive playground</a> <br/>
