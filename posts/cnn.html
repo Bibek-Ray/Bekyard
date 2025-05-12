@@ -96,7 +96,18 @@
       <p>Now this is what will be our final matrix that will be flattened and fed into the ANN for training.<br/><br/>
         Hell of a ride.<br/><br/>
         BTW, a flattened matrix is a 2 dimensioned matrix converted to a 1 dimensional matrix. Kinda like a <strong>list</strong> in python or <strong>array</strong> in <em>C++</em> or <em>Java</em>—you get it.</p>
-    <h2>I am still writing this...</h2>
+    <h2>The ANN Layer</h2>
+      <p>I have explained this one in my <a href="https://bekyard.vercel.app/posts/ann.html" target="_blank">ANN</a> blog, and almost everything from there remains the same, except the activation function in the last hidden layer.<br/>
+        For Image Classification, we use the Sigmoid Activation Function instead of ReLU. Sometimes we use the Softmax Activation Function instead, especially when classifying more than two objects.<br/>
+        For our present case, let’s assume we are classifying between dogs and cats.<br/>        
+        The Sigmoid Activation Function is this,</p>
+        <blockquote>$\sigma(x) = \frac{1}{1 + e^{-x}}$</blockquote>
+        <p>It looks like this,</p>
+        <iframe src="https://www.desmos.com/calculator/87kp4h1xfw?embed" width="800" height="400" style="border: 1px solid #ccc" frameborder=0></iframe>
+        <p>The sigmoid function outputs values between 0 and 1 — which can be interpreted as the model’s confidence. For example, a value of 0.92 means the model is 92% sure the image is a cat (or whatever class it's predicting).</p>
+      <h2>The Loss Function</h2>
+      <p>Ah, here comes the actual learning part.<br/>
+      Until now, the model was working like a dumb cat classifier. </p>
     
     <h2>Read more...</h2>
     <p>If you're still here, then congratulations—you are now 32x32% cooler.<br/>
