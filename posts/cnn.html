@@ -107,7 +107,7 @@
         <iframe src="https://www.desmos.com/calculator/87kp4h1xfw?embed" width="800" height="400" style="border: 1px solid #ccc" frameborder=0></iframe>
         <p>The sigmoid function outputs values between 0 and 1 — which can be interpreted as the model’s confidence. For example, a value of 0.92 means the model is 92% sure the image is a cat (or whatever class it's predicting).</p>
       <h2>The Loss Function</h2>
-      <p>Ah, here comes the actual learning part.<br/>
+      <p>Ah, here comes the actual learning part — for the model and us both.<br/>
       The ANN currently will spit trash values in the name of a confidence score for the animal being cat. We need to fix that, moreover, the Loss function needs to fix that.<br/>
         First, let me show you the famous Binary Cross Entropy Loss Function <em>(Cool name right?)</em>,</p>
         <blockquote>$\mathcal{L}_{\text{BCE}} = -\left[ y \cdot \log(\hat{y}) + (1 - y) \cdot \log(1 - \hat{y}) \right]$</blockquote>
