@@ -40,3 +40,15 @@ Object.entries(data).forEach(([sectionName, posts]) => {
   section.appendChild(grid);
   main.appendChild(section);
 });
+
+// reveal cards on scroll
+const observer = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+      obs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.card').forEach(card => observer.observe(card));
