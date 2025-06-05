@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Long Short-Term Memory (LSTM)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a href="../index.html" class="back-home">← Back to Home</a>
+  <section>
+    <div class="cover-image">
+      <img src="../img3.png" class="cover-art" alt="LSTM Cover Art">
+    </div>
+    <h1>Long Short-Term Memory (LSTM)</h1>
+    <p class="meta">Author: Bibek Ray &nbsp;&nbsp;|&nbsp;&nbsp; Date: 20th June 2025</p>
+
+    <p>LSTMs are a special kind of recurrent neural network capable of learning long-term dependencies. They’re designed to remember information for long periods of time, making them perfect for tasks like language modeling and time series prediction.</p>
+
+    <h2>Why not a vanilla RNN?</h2>
+    <p>Traditional recurrent networks suffer from the vanishing gradient problem. Gradients shrink as they are backpropagated through many timesteps, making it hard to learn long-range relationships.</p>
+    <p>LSTMs solve this with gates—tiny neural networks that decide what to remember and what to forget. The <em>cell state</em> acts like a conveyor belt, carrying relevant information forward unchanged unless the gates say otherwise.</p>
+
+    <h2>Basic Structure</h2>
+    <p>An LSTM cell contains:</p>
+    <ul>
+      <li><strong>Forget Gate</strong> – decides what information to throw away.</li>
+      <li><strong>Input Gate</strong> – decides which values to update.</li>
+      <li><strong>Cell State</strong> – the memory of the network.</li>
+      <li><strong>Output Gate</strong> – decides what the next hidden state should be.</li>
+    </ul>
+    <p>By combining these gates, LSTMs can preserve information for many timesteps, making them powerful for sequential data.</p>
+
+    <h2>Read more...</h2>
+    <p>If you enjoyed this quick intro, check out my other posts on neural networks. Feel free to connect on <a href="https://www.linkedin.com/in/bibek-ray-061727220/" target="_blank">LinkedIn</a>.</p>
+  </section>
+</body>
+</html>
