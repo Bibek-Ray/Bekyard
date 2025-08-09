@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Long Short-Term Memory (LSTM)</title>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
@@ -35,5 +35,30 @@
     <h2>Read more...</h2>
     <p>If you enjoyed this quick intro, check out my other posts on neural networks. Feel free to connect on <a href="https://www.linkedin.com/in/bibek-ray-061727220/" target="_blank">LinkedIn</a>.</p>
   </section>
+  <div id="progressBar" aria-hidden="true"></div> <!-- optional -->
+<button id="backToTop" aria-label="Back to top" title="Back to top">↑</button>
+<script>
+  (function(){
+    const btn = document.getElementById('backToTop');
+    const bar = document.getElementById('progressBar');
+
+    const onScroll = () => {
+      const y = window.scrollY || document.documentElement.scrollTop;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      // Show button after 600px
+      if (y > 600) btn.classList.add('show'); else btn.classList.remove('show');
+      // Progress bar (optional)
+      if (bar) bar.style.width = Math.max(0, Math.min(1, y / max)) * 100 + '%';
+    };
+
+    btn.addEventListener('click', () => {
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    });
+
+    document.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // init
+  })();
+</script>
 </body>
 </html>

@@ -53,10 +53,6 @@ transform: scale(1.02);
 .cover-image {
 margin: -15px -15px 30px;
 }
-.two-column-image{
-  display: flex;
-  flex-direction: column;
-}
 }
 
 /* HEADINGS */
@@ -318,3 +314,115 @@ mjx-container {
   background: linear-gradient(90deg, #5ecfff, transparent);
   opacity: 0.3;
 }
+
+/* ---------- Readability & Typography ---------- */
+:root{
+  --maxw: 980px;
+  --shadow-strong: 0 10px 35px rgba(0,0,0,.35);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  background-color: #0b1626; /* subtle safety under bg image */
+}
+
+
+/* Slightly narrower measure for comfy reading */
+section{
+  max-width: var(--maxw);
+  line-height: 1.9;
+  text-wrap: pretty;
+}
+
+/* Headings balance & anchor space */
+h1, h2, h3 { text-wrap: balance; scroll-margin-top: 90px; }
+
+/* Make inline <span> highlight color accessible on dark bg */
+span { color: #76b6ff; }
+
+/* ---------- Links: visible focus + subtle underline ---------- */
+a{
+  text-decoration-thickness: .08em;
+  text-underline-offset: .18em;
+  outline: none;
+}
+a:focus-visible{
+  box-shadow: 0 0 0 3px rgba(94,207,255,.35);
+}
+
+/* ---------- Images & captions ---------- */
+img{
+  box-shadow: var(--shadow-strong);
+}
+.meta{
+  margin-top: 8px; margin-bottom: 22px;
+  text-align: center; font-style: normal; opacity:.85;
+}
+
+/* Two-column image layout that wraps nicely */
+.two-column-image{
+  display:grid; gap: 18px;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+}
+@media (max-width: 920px){
+  .two-column-image{ grid-template-columns: 1fr; }
+}
+
+/* ---------- Tables: better mobile & zebra ---------- */
+table { border: 1px solid #23344f; }
+tbody tr:nth-child(odd) td { background: #17253a; }
+table:focus-within { box-shadow: 0 0 0 3px rgba(94,207,255,.2); }
+
+@media (max-width: 768px){
+  table { font-size: .92rem; }
+  th, td { padding: 14px 14px; }
+}
+
+/* ---------- Code blocks & Math ---------- */
+pre, code{
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+mjx-container { padding-bottom: 6px; }
+
+/* ---------- Reduced motion respect ---------- */
+@media (prefers-reduced-motion: reduce){
+  * { animation: none !important; transition: none !important; }
+}
+
+/* ---------- Back to Top Button ---------- */
+#backToTop{
+  position: fixed;
+  right: 22px; bottom: 24px;
+  display: inline-flex; align-items:center; justify-content:center;
+  width: 46px; height: 46px; border-radius: 999px;
+  background: linear-gradient(180deg,#1f3352,#15253c);
+  color: #dff3ff; border: 1px solid #2a4165;
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+  opacity: 0; visibility: hidden; transform: translateY(10px);
+  transition: opacity .2s ease, transform .2s ease, visibility .2s;
+  cursor: pointer; z-index: 9999;
+}
+#backToTop:hover { filter: brightness(1.15); }
+#backToTop.show{ opacity: 1; visibility: visible; transform: translateY(0); }
+#backToTop:focus-visible{ box-shadow: 0 0 0 4px rgba(94,207,255,.35); }
+
+/* ---------- Reading Progress Bar (optional) ---------- */
+#progressBar{
+  position: fixed; top: 0; left: 0; height: 4px; width: 0%;
+  background: linear-gradient(90deg,#5ecfff,#7fd0ff);
+  box-shadow: 0 2px 10px rgba(94,207,255,.5);
+  z-index: 10000;
+}
+.back-home{
+  top: 0; display:inline-block;
+  margin: 14px 0; padding: 8px 12px; border-radius: 8px;
+  background: rgba(21,37,60,.65); border:1px solid #2a4165;
+  backdrop-filter: blur(6px);
+}
+.back-home:hover{ filter: brightness(1.12); }
+.back-home:focus-visible{ box-shadow: 0 0 0 4px rgba(94,207,255,.35); }
